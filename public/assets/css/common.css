@@ -1,0 +1,118 @@
+html{
+    height: 100%;
+}
+
+body{
+    min-height: 100%;
+}
+
+.navbar-fixed-bottom, .navbar-fixed-top{
+    z-index: 80;
+}
+
+.table .acoes{
+    width: 1%;
+    white-space: nowrap;
+    text-align: right;
+}
+.table .acoes i{
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+@-webkit-keyframes rotate{
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1,150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90,150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90,150;
+        stroke-dashoffset: -124;
+    }
+}
+@-webkit-keyframes dash {
+    0% {
+        stroke-dasharray: 1,150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90,150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90,150;
+        stroke-dashoffset: -124;
+    }
+}
+
+.spinner-container{
+    animation: rotate 2s linear infinite;
+    z-index: 2;
+}
+
+.spinner-container .path{
+    stroke-dasharray: 1,150;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    -webkit-animation: dash 1.5s ease-in-out infinite;
+    animation: dash 1.5s ease-in-out infinite;
+    stroke: #840637;
+    stroke-width: 3px;
+}
+
+
+.drop-container i{
+    cursor: pointer;
+}
+
+.drop-container i:hover ~ .drop-box, .drop-container a:hover ~ .drop-box, .drop-container .drop-container-label:hover ~ .drop-box, .drop-box:hover{
+    display: block;
+}
+
+.drop-container-label{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.drop-box{
+    display: none;
+    position: absolute;
+    z-index: 998;
+    background: #EEEEEE;
+    border-top: 2px solid white;
+    margin-top: -2px;
+    margin-left: -60px;
+    min-width: 150px;
+}
+
+.drop-box.force-hide{
+    display: none;
+}
+
+.drop-box li{
+    cursor: pointer;
+    font-size: 14px;
+    list-style: none;
+    padding: 5px 10px;
+}
+.drop-box li:hover{
+    background-color: #e3e3e3;
+}
+
+.drop-box-footer{
+    background: #3C8DBC;
+    padding: 5px 10px;
+    text-align: right;
+}

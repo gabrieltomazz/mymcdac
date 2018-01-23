@@ -1,0 +1,27 @@
+{
+  "name": "dutilsjs",
+  "homepage": "https://github.com/danielcmm/DUtilsJS",
+  "authors": [
+    "Daniel <danielcmm@gmail.com>"
+  ],
+  "description": "Javascript Utility Package",
+  "main": "",
+  "keywords": [
+    "js",
+    "javascript",
+    "utility"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies" : {
+    "jquery" : "latest",
+    "angular" : "latest",
+    "toastr" : "latest"
+  }
+}

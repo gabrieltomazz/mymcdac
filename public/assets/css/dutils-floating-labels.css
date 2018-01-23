@@ -1,0 +1,31 @@
+
+.floating-label{
+    position: relative;
+}
+
+.floating-label input {
+    padding: 15px 0 0 5px;
+    font-size: 12px;
+}
+
+/**** HERE THE MAGIC STARTS *****/
+/* Original label position: top left and small */
+.floating-label label {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    padding: 0 5px;
+    background-color: #fafafa;
+    font-weight:normal;
+    color: #aaaaaa;
+    z-index:0;
+    font-size: 0.85em;
+
+}
+
+
+/* Label highlight effect also for non-JS browsers */
+.floating-label input:not(.empty):focus + label {
+    color: #0099ff;
+}
+

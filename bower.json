@@ -1,0 +1,191 @@
+{
+  "name": "mamadecisao",
+  "dependencies": {
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "angular": "1.6.x",
+    "angular-bootstrap": "latest",
+    "angular-sanitize": "latest",
+    "font-awesome": "latest",
+    "toastr": "latest",
+    "dutilsjs": "latest",
+    "ng-file-upload": "latest",
+    "jcrop": "latest",
+    "caman": "latest",
+    "admin-lte": "2.3.x",
+    "angular-ui-select": "latest",
+    "angular-ui-tree": "2.22.6",
+    "angular-chart.js": "^1.1.1"
+  },
+  "install": {
+    "base": "public/assets/vendor",
+    "path": {
+      "js": "js",
+      "css": "css",
+      "otf": "fonts",
+      "eot": "fonts",
+      "svg": "fonts",
+      "ttf": "fonts",
+      "woff": "fonts",
+      "woff2": "fonts"
+    },
+    "sources": {
+      "jquery": {
+        "mapping": [
+          {
+            "bower_components/jquery/dist/jquery.min.js": "../jquery.min.js"
+          }
+        ]
+      },
+      "bootstrap": {
+        "mapping": [
+          {
+            "bower_components/bootstrap/dist/js/bootstrap.min.js": "../bootstrap.min.js"
+          },
+          {
+            "bower_components/bootstrap/dist/css/bootstrap.min.css": "../bootstrap.min.css"
+          },
+          {
+            "bower_components/bootstrap/dist/css/bootstrap-theme.min.css": "../bootstrap-theme.min.css"
+          }
+        ]
+      },
+      "dutilsjs": {
+        "mapping": [
+          {
+            "bower_components/dutilsjs/src/dutils-common.js": "../dutils-common.js"
+          },
+          {
+            "bower_components/dutilsjs/src/dutils-angular-config.js": "../dutils-angular-config.js"
+          },
+          {
+            "bower_components/dutilsjs/src/dutils-angular-directives.js": "../dutils-angular-directives.js"
+          }
+        ]
+      },
+      "angular": {
+        "mapping": [
+          {
+            "bower_components/angular/angular.js": "../angular.js"
+          }
+        ]
+      },
+      "angular-bootstrap": {
+        "mapping": [
+          {
+            "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js": "../ui-bootstrap-tpls.min.js"
+          }
+        ]
+      },
+      "angular-sanitize": {
+        "mapping": [
+          {
+            "bower_components/angular-sanitize/angular-sanitize.min.js": "../angular-sanitize.min.js"
+          }
+        ]
+      },
+      "font-awesome": {
+        "mapping": [
+          {
+            "bower_components/font-awesome/css/font-awesome.min.css": "../font-awesome.min.css"
+          },
+          {
+            "bower_components/font-awesome/fonts/FontAwesome.otf": "../FontAwesome.otf"
+          },
+          {
+            "bower_components/font-awesome/fonts/fontawesome-webfont.eot": "../fontawesome-webfont.eot"
+          },
+          {
+            "bower_components/font-awesome/fonts/fontawesome-webfont.svg": "../fontawesome-webfont.svg"
+          },
+          {
+            "bower_components/font-awesome/fonts/fontawesome-webfont.ttf": "../fontawesome-webfont.ttf"
+          },
+          {
+            "bower_components/font-awesome/fonts/fontawesome-webfont.woff": "../fontawesome-webfont.woff"
+          },
+          {
+            "bower_components/font-awesome/fonts/fontawesome-webfont.woff2": "../fontawesome-webfont.woff2"
+          }
+        ]
+      },
+      "toastr": {
+        "mapping": [
+          {
+            "bower_components/toastr/toastr.min.js": "../toastr.min.js"
+          },
+          {
+            "bower_components/toastr/toastr.min.css": "../toastr.min.css"
+          }
+        ]
+      },
+      "ng-file-upload": {
+        "mapping": [
+          {
+            "bower_components/ng-file-upload/ng-file-upload.min.js": "../ng-file-upload.min.js"
+          }
+        ]
+      },
+      "jcrop": {
+        "mapping": [
+          {
+            "bower_components/jcrop/js/Jcrop.min.js": "../jcrop.min.js"
+          },
+          {
+            "bower_components/jcrop/css/Jcrop.min.css": "../jcrop.min.css"
+          }
+        ]
+      },
+      "admin-lte": {
+        "mapping": [
+          {
+            "bower_components/admin-lte/dist/css/AdminLTE.min.css": "../AdminLTE.min.css"
+          },
+          {
+            "bower_components/admin-lte/dist/css/skins/skin-purple.min.css": "../skin-purple.min.css"
+          },
+          {
+            "bower_components/admin-lte/dist/js/app.min.js": "../admin_lte.min.js"
+          }
+        ]
+      },
+      "caman": {
+        "mapping": [
+          {
+            "bower_components/caman/dist/caman.full.min.js": "../caman.full.min.js"
+          }
+        ]
+      },
+      "angular-ui-select": {
+        "mapping": [
+          {
+            "bower_components/angular-ui-select/dist/select.min.css": "../select.min.css"
+          },
+          {
+            "bower_components/angular-ui-select/dist/select.min.js": "../select.min.js"
+          }
+        ]
+      },
+      "angular-ui-tree": {
+        "mapping": [
+          {
+            "bower_components/angular-ui-tree/dist/angular-ui-tree.min.css": "../angular-ui-tree.min.css"
+          },
+          {
+            "bower_components/angular-ui-tree/dist/angular-ui-tree.js": "../angular-ui-tree.js"
+          }
+        ]
+      },
+      "angular-chart": {
+        "mapping": [
+          {
+            "bower_components/angular-chart.js/dist/angular-chart.min.js": "../angular-chart.min.js"
+          },
+          {
+            "bower_components/chart.js/dist/Chart.min.js": "../Chart.min.js"
+          }
+        ]
+      }
+    }
+  }
+}
