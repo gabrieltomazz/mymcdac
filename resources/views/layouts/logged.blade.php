@@ -90,7 +90,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/welcome') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'MamaDecisao') }}
                     </a>
                 </div>
