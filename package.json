@@ -9,7 +9,7 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "start": "node node_modules/grunt-cli/bin/grunt",
-        "postinstall": "node node_modules/bower/bin/bower install",
+        "postinstall": "node node_modules/bower/bin/bower install"
     },
     "devDependencies": {
         "axios": "^0.16.2",
@@ -19,5 +19,6 @@
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
         "vue": "^2.1.10",
+        "bower": "1.8.2"
     }
 }
