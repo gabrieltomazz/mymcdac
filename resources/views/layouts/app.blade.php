@@ -111,9 +111,10 @@
     <script src="/assets/vendor/js/imagezoom.js"></script>
     <script src="/assets/vendor/js/jquery.flexslider.js"></script>
 
+    <script src="/assets/vendor/js/ProjectController.js"></script>
 
     <!-- Scripts Angular.js -->
-    <script src="/assets/js/projects/ProjectController.js"></script>
-            
+    <!-- <script src="/assets/js/projects/ProjectController.js"></script> -->
+
 </body>
 </html>
