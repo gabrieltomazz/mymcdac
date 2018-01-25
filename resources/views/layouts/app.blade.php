@@ -93,7 +93,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="/assets/js/menu.js"></script>
 
-    <script src="/assets/vendor/js/angular.js"></script>
+    <script src="/vendor/js/angular.js"></script>
     <script src="/assets/vendor/js/angular-sanitize.min.js"></script>
     <script src="/assets/vendor/js/angular-locale_pt-br.js"></script>
     <script src="/assets/vendor/js/ui-bootstrap-tpls.min.js"></script>
@@ -113,7 +113,7 @@
 
 
     <!-- Scripts Angular.js -->
-    <script src="/../../../public/assets/js/projects/ProjectController.js"></script>
+    <script src="/assets/js/projects/ProjectController.js"></script>
 
 
 </body>
