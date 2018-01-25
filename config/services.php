@@ -38,7 +38,7 @@ return [
     'facebook' => [
         'client_id' => '119388388770301',
         'client_secret' => 'f4db2fa5b1117c15c96ceb50ccc4e514',
-        'redirect' => 'http://localhost:8000/callback',
+        'redirect' => 'https://mymcdac.herokuapp.com/callback',
     ],
 
 ];
