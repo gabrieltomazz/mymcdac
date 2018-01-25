@@ -113,7 +113,7 @@
 
 
     <!-- Scripts Angular.js -->
-    <script src="{{ public('assets/js/projects/ProjectController.js') }}"></script>
-
+    <script src="/assets/js/projects/ProjectController.js"></script>
+            
 </body>
 </html>
