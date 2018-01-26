@@ -20,6 +20,7 @@ Route::get('/', function () {
 // });
 
 Route::get('users', 'UsersController@index');
+Route::get('privacy_notice', 'UsersController@privacy');
 Route::get('account', 'AccountController@index')->name('account');
 Route::post('update', 'AccountController@update')->name('update');
 

@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Mamadecisão</title>
+        <title>MyMCDA-C</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -44,7 +44,9 @@
             }
 
             .content {
-                text-align: center;
+                position: absolute; 
+                left: 450px; /* posiciona a 90px para a esquerda */ 
+                top: 200px;
             }
 
             .title {
@@ -81,15 +83,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    MamaDecisão
+                    MyMCDA-C
                 </div>
 
                 <div class="links">
                     <a href="{{ url('/projects') }}">Projects</a>
                     <a href="https://laracasts.com">Research</a>
-                    <a href="https://laravel-news.com">News</a>
                     <a href="https://forge.laravel.com">Account</a>
                     <a href="https://github.com/laravel/laravel">FAC</a>
+                    <a href="{{ url('/privacy_notice') }}">Privacy Notice</a>
                 </div>
             </div>
         </div>

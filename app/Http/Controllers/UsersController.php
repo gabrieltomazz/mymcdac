@@ -14,4 +14,7 @@ class UsersController extends Controller {
         return view('users');
     }
 
+    public function privacy(){
+    	return view('privacy_notice');
+    }
 }
