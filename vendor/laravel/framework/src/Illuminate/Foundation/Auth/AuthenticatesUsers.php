@@ -154,7 +154,7 @@ trait AuthenticatesUsers
 
         $request->session()->invalidate();
 
-        return redirect('/welcome');
+        return redirect('/');
     }
 
     /**
