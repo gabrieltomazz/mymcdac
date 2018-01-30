@@ -6,8 +6,15 @@
    <section class = "content">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading"> <a href="{{ url('/projects/create') }}">Create Project</a></div>
+            <div class="panel panel-default">  
+               <div class="panel-heading" > 
+            		<div class="col-md-4"> 
+            			My MCDA-C Projects 
+            		</div>
+            		<div class="text-right">
+            			<a  href="{{ url('/projects/create') }}">Create Project</a>
+            		</div>
+            	</div>
                 <div class = "box-body table-responsive">
 	                <div class="panel-body" >
 	                	<div >

@@ -171,7 +171,8 @@
         $http.post("/criterions/store",node).then(function (response) {
 
           appInfo("Registro salvo com sucesso!");
-          response.data.id = $scope.data[i].id;
+          $scope.data[i].id = response.data.id ;
+          $scope.nodeSelecionado.id = response.data.id ;
           //location.reload();
 
         }, function (response) {

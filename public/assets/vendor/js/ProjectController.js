@@ -70,7 +70,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 			appInfo("Registro salvo com sucesso!");
 
-			$window.location.href = '/projects';
+			$window.location.href = '/projects/'+response.data.id+'/criterio/level';
 
 		}, function (response) {
 		}).finally(function(){

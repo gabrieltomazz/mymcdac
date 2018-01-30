@@ -4,7 +4,8 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary" >
             	
-                <div class="panel-heading">Create Project</div>
+                <div class="panel-heading" ng-show="instance.id == null" >Create Project</div>
+                <div class="panel-heading" ng-show="instance.id != null" >Update Project</div>
 
                 <div class="panel-body" >
                     <div class="form-horizontal" >
