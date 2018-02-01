@@ -126,6 +126,21 @@ class TestResponse
     }
 
     /**
+     * Asserts that the response does not contains the given header.
+     *
+     * @param  string  $headerName
+     * @return $this
+     */
+    public function assertHeaderMissing($headerName)
+    {
+        PHPUnit::assertFalse(
+            $this->headers->has($headerName), "Unexpected header [{$headerName}] is present on response."
+        );
+
+        return $this;
+    }
+
+    /**
      * Asserts that the response contains the given cookie and equals the optional value.
      *
      * @param  string  $cookieName
@@ -359,27 +374,60 @@ class TestResponse
      * Assert that the response does not contain the given JSON fragment.
      *
      * @param  array  $data
+     * @param  bool   $exact
      * @return $this
      */
-    public function assertJsonMissing(array $data)
+    public function assertJsonMissing(array $data, $exact = false)
     {
+        if ($exact) {
+            return $this->assertJsonMissingExact($data);
+        }
+
         $actual = json_encode(Arr::sortRecursive(
             (array) $this->decodeResponseJson()
         ));
 
         foreach (Arr::sortRecursive($data) as $key => $value) {
-            $expected = substr(json_encode([$key => $value]), 1, -1);
+            $unexpected = substr(json_encode([$key => $value]), 1, -1);
 
             PHPUnit::assertFalse(
-                Str::contains($actual, $expected),
+                Str::contains($actual, $unexpected),
                 'Found unexpected JSON fragment: '.PHP_EOL.PHP_EOL.
-                "[{$expected}]".PHP_EOL.PHP_EOL.
+                "[{$unexpected}]".PHP_EOL.PHP_EOL.
                 'within'.PHP_EOL.PHP_EOL.
                 "[{$actual}]."
             );
         }
 
         return $this;
+    }
+
+    /**
+     * Assert that the response does not contain the exact JSON fragment.
+     *
+     * @param  array  $data
+     * @return $this
+     */
+    public function assertJsonMissingExact(array $data)
+    {
+        $actual = json_encode(Arr::sortRecursive(
+            (array) $this->decodeResponseJson()
+        ));
+
+        foreach (Arr::sortRecursive($data) as $key => $value) {
+            $unexpected = substr(json_encode([$key => $value]), 1, -1);
+
+            if (! Str::contains($actual, $unexpected)) {
+                return $this;
+            }
+        }
+
+        PHPUnit::fail(
+            'Found unexpected JSON fragment: '.PHP_EOL.PHP_EOL.
+            '['.json_encode($data).']'.PHP_EOL.PHP_EOL.
+            'within'.PHP_EOL.PHP_EOL.
+            "[{$actual}]."
+        );
     }
 
     /**
@@ -413,6 +461,52 @@ class TestResponse
             } else {
                 PHPUnit::assertArrayHasKey($value, $responseData);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Assert that the response JSON has the expected count of items at the given key.
+     *
+     * @param  int  $count
+     * @param  string|null  $key
+     * @return $this
+     */
+    public function assertJsonCount(int $count, $key = null)
+    {
+        if ($key) {
+            PHPUnit::assertCount(
+                $count, data_get($this->json(), $key),
+                "Failed to assert that the response count matched the expected {$count}"
+            );
+
+            return $this;
+        }
+
+        PHPUnit::assertCount($count,
+            $this->json(),
+            "Failed to assert that the response count matched the expected {$count}"
+        );
+
+        return $this;
+    }
+
+    /**
+     * Assert that the response has the given JSON validation errors for the given keys.
+     *
+     * @param  string|array  $keys
+     * @return $this
+     */
+    public function assertJsonValidationErrors($keys)
+    {
+        $errors = $this->json()['errors'];
+
+        foreach (Arr::wrap($keys) as $key) {
+            PHPUnit::assertTrue(
+                isset($errors[$key]),
+                "Failed to find a validation error in the response for key: '{$key}'"
+            );
         }
 
         return $this;
