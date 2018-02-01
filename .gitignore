@@ -7,6 +7,7 @@ bootstrap/compiled.php
 app/storage/
 vendor/
 config/
+config/database.php
 
 # Laravel 5 & Lumen specific
 public/storage
