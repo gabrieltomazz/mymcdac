@@ -10,28 +10,20 @@
                 <div class="panel-body" >
                     <div class="form-horizontal" >
                         
-                            <div class="form-group">
-                                <label for="objetivo_pesquisa" class="col-md-4 control-label">Objetivo pesquisa:</label>
-
-                                <div class="col-md-6">
-                                    <input id="objetivo_pesquisa" type="text" class="form-control" name="objetivo_pesquisa" ng-model="instance.objetivo_pesquisa" >
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email" class="col-md-4 control-label">Objeto Pesquisa</label>
-
-                                <div class="col-md-6">
-                                    <input id="objeto_pesquisa" type="text" class="form-control" name="objeto_pesquisa" ng-model="instance.objeto_pesquisa" >
-                                    
-                                </div>
-                            </div>
-                        
                         <div class="form-group">
-                            <label for="desempenho_max" class="col-md-4 control-label" >Desempenho Max </label>
+                            <label for="objetivo_pesquisa" class="col-md-4 control-label">Objetivo pesquisa:</label>
 
                             <div class="col-md-6">
-                                <input id="desempenho_max" type="text" class="form-control" name="desempenho_max" ng-model="instance.desempenho_max" placeholder="QualisMax" >
+                                <input id="objetivo_pesquisa" type="text" class="form-control" name="objetivo_pesquisa" ng-model="instance.objetivo_pesquisa" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Objeto Pesquisa</label>
+
+                            <div class="col-md-6">
+                                <input id="objeto_pesquisa" type="text" class="form-control" name="objeto_pesquisa" ng-model="instance.objeto_pesquisa" change-on-blur="setDesempenho(instance.objeto_pesquisa)" required autofocus>
+                                
                             </div>
                         </div>
 
@@ -39,7 +31,15 @@
                             <label for="desempenho" class="col-md-4 control-label">Desempenho</label>
 
                             <div class="col-md-6">
-                                <input id="desempenho" type="text" class="form-control" name="desempenho" ng-model="instance.objeto_pesquisa" disabled="">
+                                <input id="desempenho" type="text" class="form-control" name="desempenho" ng-model="instance.desempenho" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="desempenho_max" class="col-md-4 control-label" >Desempenho Max </label>
+
+                            <div class="col-md-6">
+                                <input id="desempenho_max" type="text" class="form-control" name="desempenho_max" ng-model="instance.desempenho+'Max'" placeholder="QualisMax" disabled="" >
                             </div>
                         </div>
                         
@@ -47,14 +47,14 @@
                             <label for="desempenho_min" class="col-md-4 control-label">Desempenho Min</label>
 
                             <div class="col-md-6">
-                                <input id="desempenho_min" type="text" class="form-control" name="desempenho_min" ng-model="instance.desempenho_min" placeholder="QualisMin" >
+                                <input id="desempenho_min" type="text" class="form-control" name="desempenho_min" ng-model="instance.desempenho+'Min'" placeholder="QualisMin" disabled="" >
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="steps" class="col-md-4 control-label">Degraus</label> 
                             <div class = "col-md-2">
-                                <select id = "steps" class = "form-control" ng-model = "instance.steps" >
+                                <select id = "steps" class = "form-control" ng-model = "instance.steps" required autofocus>
                                     <option ng-value ="3" >3</option>
                                     <option ng-value ="4" >4</option>
                                     <option ng-value ="5" >5</option>
@@ -70,7 +70,7 @@
                             <label for="data_inicio" class="col-md-4 control-label">Data Inicio</label>
 
                             <div class="col-md-6">
-                                <input id="data_inicio" type="text" mask-date="" class="form-control" name="data_inicio" ng-model="instance.data_inicio"  placeholder="28/03/2017">
+                                <input id="data_inicio" type="text" mask-date="" class="form-control" name="data_inicio" ng-model="instance.data_inicio"  placeholder="28/03/2017" required autofocus>
                             </div>
                         </div>
 
@@ -78,7 +78,7 @@
                             <label for="data_fim" class="col-md-4 control-label">Data Fim</label>
 
                             <div class="col-md-6">
-                                <input id="data_fim" type="text" mask-date="" class="form-control" name="data_fim" ng-model="instance.data_fim"  placeholder="28/03/2017" >
+                                <input id="data_fim" type="text" mask-date="" class="form-control" name="data_fim" ng-model="instance.data_fim"  placeholder="28/03/2017" required autofocus>
                             </div>
                         </div>
                     </div>

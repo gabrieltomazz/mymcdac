@@ -1,6 +1,6 @@
 <div class="container" ng-controller="CriterionController" ng-init="find({{$id}})">
 	<div class="container" >
-		<h3> Priority Levels</h3>
+		<h3> Effort Levels</h3>
 	</div>
 	<div ng-repeat = "nos in listOfLevels track by $index">
 		<div class="col-md-6">

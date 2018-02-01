@@ -16,27 +16,27 @@ app.config(['ChartJsProvider', function (ChartJsProvider) {
     });
 }]);
 
-// app.directive('changeOnBlur', function () {
-// 	return {
-// 		restrict: 'A',
-// 		require: 'ngModel',
-// 		link: function (scope, elm, attrs, ngModelCtrl) {
-// 			if (attrs.type === 'radio' || attrs.type === 'checkbox')
-// 				return;
+app.directive('changeOnBlur', function () {
+	return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function (scope, elm, attrs, ngModelCtrl) {
+			if (attrs.type === 'radio' || attrs.type === 'checkbox')
+				return;
 
-// 			var expressionToCall = attrs.changeOnBlur;
+			var expressionToCall = attrs.changeOnBlur;
 
-// 			var oldValue = null;
-// 			elm.bind('focus', function () {
-// 				oldValue = elm.val();
-// 			});
+			var oldValue = null;
+			elm.bind('focus', function () {
+				oldValue = elm.val();
+			});
 
-// 			elm.bind('blur', function () {
-// 				var newValue = elm.val();
-// 				if (newValue !== oldValue) {
-// 					scope.$eval(expressionToCall);
-// 				}
-// 			});
-// 		}
-// 	};
-// });
+			elm.bind('blur', function () {
+				var newValue = elm.val();
+				if (newValue !== oldValue) {
+					scope.$eval(expressionToCall);
+				}
+			});
+		}
+	};
+});

@@ -12,7 +12,7 @@
             			My MCDA-C Projects 
             		</div>
             		<div class="text-right">
-            			<a  href="{{ url('/projects/create') }}">Create Project</a>
+	       				<a href="{{ url('/projects/create') }}">Create Project <span class="glyphicon glyphicon-plus"></span></a>
             		</div>
             	</div>
                 <div class = "box-body table-responsive">

@@ -36,6 +36,11 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 	};
 
+	$scope.setDesempenho =  function(desempenho){
+
+		$scope.instance.desempenho = desempenho.substring(0,3);
+	};
+
 	$scope.findProject = function(id){
 
 		if (id == 'create'){

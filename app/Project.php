@@ -8,7 +8,7 @@ class Project extends Model
 {  
 
      protected $fillable = [
-        'user_id','objetivo_pesquisa', 'objeto_pesquisa','desempenho_max','desempenho_min','data_inicio','data_fim','steps',
+        'user_id','objetivo_pesquisa', 'objeto_pesquisa','desempenho','data_inicio','data_fim','steps',
     ];
 
     public function user(){
