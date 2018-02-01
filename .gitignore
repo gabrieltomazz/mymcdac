@@ -1,6 +1,5 @@
 node_modules/
 npm-debug.log
-config/database.php
 .env
 
 # Laravel 4 specific
@@ -11,8 +10,9 @@ app/storage/
 public/storage
 public/hot
 storage/*.key
-Homestead.yaml	
+Homestead.yaml
 Homestead.json
+config/database.php
 
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
