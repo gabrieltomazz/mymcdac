@@ -11,4 +11,10 @@ class OptionAnswerController extends Controller
 
      	return OptionAnswer::findOrFail($id_projects);
      }
+
+	 public function remove($id){
+	 	
+	 	OptionAnswer::findOrFail($id)->delete();
+	 }
+
 }

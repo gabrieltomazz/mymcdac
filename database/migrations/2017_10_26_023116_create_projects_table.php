@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('objetivo_pesquisa',144);
             $table->string('objeto_pesquisa',144);
             $table->string('desempenho',55);
+            $table->string('option',55);
             $table->string('data_inicio',14);
             $table->string('data_fim',14);
             $table->integer('steps');

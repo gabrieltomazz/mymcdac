@@ -10,13 +10,62 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 	$scope.reset = function(){
 		$scope.instance = {
 			'id' : null,
-			'option_answer': [{
-			}]	
+			'option_answer': {
+				'option1': [{ 
+					'answer': 'Poor',
+				},{ 
+					'answer': 'Fair',
+				},{ 
+					'answer': 'Good',
+				},{ 
+					'answer': 'Very good',
+				}],
+				'option2': [{ 
+					'answer': 'Very Poor',
+				},{ 
+					'answer': 'Poor',
+				},{ 
+					'answer': 'Fair',
+				},{ 
+					'answer': 'Good',
+				},{ 
+					'answer': 'Very good',
+				}],
+				'option3': [{ 
+					'answer': 'Extremely bad',
+				},{ 
+					'answer': 'Very bad',
+				},{ 
+					'answer': 'bad ',
+				},{ 
+					'answer': 'good ',
+				},{ 
+					'answer': 'Very good',
+				},{ 
+					'answer': 'Extremely good',
+				}],
+				'option4': [{ 
+					'answer': 'Very bad',
+				},{ 
+					'answer': 'bad',
+				},{ 
+					'answer': 'Somewhat good',
+				},{ 
+					'answer': 'Good',
+				},{ 
+					'answer': 'Very good',
+				},{ 
+					'answer': 'Extremely good',
+				}],
+				'others': [{ 
+					'answer': null,
+				}]
+			}	
 		};
 	};
 
 	$scope.addOp = function(){
-		$scope.instance.option_answer.push({});
+		$scope.instance.option_answer.others.push({});
 
 	};
 
@@ -51,7 +100,9 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 		//id=1
 		$http.get('/projects/find_project/'+id).then(function (response) {
 
-				$scope.instance = response.data;
+			$scope.instance.option_answer[response.data.option] = response.data.option_answer;
+			response.data.option_answer = $scope.instance.option_answer;
+			$scope.instance = response.data;
 
 		}, function (response) {
 			console.log('erro');
@@ -65,7 +116,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 		
 		$scope.instance.user_id = id ;
 		loadingCenter("pageContent",true);
-		prepareToSaveOptionsAnswer($scope.instance.option_answer);
+		prepareToSaveOptionsAnswer($scope.instance.option_answer[$scope.instance.option],$scope.instance.option);
 
 		$http.post("/projects/store",$scope.instance).then(function (response) {
 
@@ -84,13 +135,38 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 
 	};
-	var prepareToSaveOptionsAnswer = function(options){
+	var prepareToSaveOptionsAnswer = function(options,option){
 
 		for(var i in options){
 			if(options[i].id == null){
-				$scope.instance.option_answer[i].id = null;
+				$scope.instance.option_answer[option][i].id = null;
 			}
 		}
+		$scope.instance.option_answer = $scope.instance.option_answer[option];
+	};
+	
+	$scope.deleteOption = function(scope){
+
+		if(scope.option.id == null){
+        	for(var i in $scope.instance.option_answer[$scope.instance.option]){
+            	if($scope.instance.option_answer[$scope.instance.option][i].answer == scope.option.answer){
+            		//$scope.instance.option_answer[$scope.instance.option][i].splice();
+            		arrRemove($scope.instance.option_answer[$scope.instance.option],$scope.instance.option_answer[$scope.instance.option][i]);
+            	}
+            }
+        }else{
+        	$http.get('/option_answer/remove/' + scope.option.id).then(function (response) {
+
+				arrRemove($scope.instance.option_answer[$scope.instance.option], scope.option);
+
+			}, function (response) {
+			}).finally(function () {
+
+				loadingTop("pageBody", false);
+
+			});
+
+        }
 	};
 
 	$scope.remove = function (instance) {

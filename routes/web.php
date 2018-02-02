@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('projects/edit/{id}', "ProjectController@edit");
 	Route::get('projects/remove/{id}', 'ProjectController@remove');
 
+	Route::get('option_answer/remove/{id}', 'OptionAnswerController@remove');
+
 	Route::get('projects/{project_id}/criterio', 'CriterionController@index');
 	Route::get('projects/{project_id}/criterio/level', 'CriterionController@level');
 	Route::get('projects/{project_id}/criterio/level1', 'CriterionController@level1');
