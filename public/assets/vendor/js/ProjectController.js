@@ -148,10 +148,10 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 	$scope.deleteOption = function(scope){
 
 		if(scope.option.id == null){
-        	for(var i in $scope.instance.option_answer[$scope.instance.option]){
-            	if($scope.instance.option_answer[$scope.instance.option][i].answer == scope.option.answer){
+        	for(var i in $scope.instance.option_answer['others']){
+            	if($scope.instance.option_answer['others'][i].answer == scope.option.answer){
             		//$scope.instance.option_answer[$scope.instance.option][i].splice();
-            		arrRemove($scope.instance.option_answer[$scope.instance.option],$scope.instance.option_answer[$scope.instance.option][i]);
+            		arrRemove($scope.instance.option_answer['others'],$scope.instance.option_answer['others'][i]);
             	}
             }
         }else{
