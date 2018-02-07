@@ -90,47 +90,179 @@
                     Opções de Reposta:
                 </div>
                 <div class = "panel-body ">
-                    <table class="table table-bordered " > 
-                        <tr class="table-primary">
-                            <th class=" table-primary">
+                    <div class="panel-group col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading" >
+                              <h4 class="panel-title">
                                 <label class="checkbox-inline">
-                                    <input type="radio" class="form-check-input" ng-model="instance.option" value="option1">
+                                            <input type="radio" class="form-check-input" ng-model="instance.option" value="option1">
                                 </label>
-                                <a data-toggle="collapse" href="#option1" role="button" aria-expanded="false" aria-controls="collapseOne">
-                                    Option 1       
-                                </a>
-                            </th>
-                            <th>
+                                <a data-toggle="collapse" href="#option1"> POOR - FAIR - GOOD - VERY GOOD</a>
+                                
+                              </h4>
+                            </div>
+                            <div id="option1" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                    <div class="col-md-3" ng-repeat = "option in instance.option_answer.option1 track by $index">
+                                        <label for = "options">N@{{$index + 1}}</label>
+                                        <input id="option_answer.@{{ $index }}.answer" type="text" class="form-control" name="answer" ng-model="option.answer"  placeholder="level">
+                                    </div>
+
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-group col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
                                 <label class="checkbox-inline">
-                                    <input type="radio" class="form-check-input" ng-model="instance.option" value="option2">
+                                        <input type="radio" class="form-check-input" ng-model="instance.option" value="option2">
                                 </label>
-                                <a data-toggle="collapse" href="#option2" role="button" aria-expanded="false" aria-controls="collapseTwo">
-                                    Option 2 
-                                </a>
-                            </th>
-                            <th>
+                                <a data-toggle="collapse" href="#option2" > VERY POOR - POOR - FAIR - GOOD - VERY GOOD</a>
+                                
+                              </h4>
+                            </div>
+                            <div id="option2" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                    <div class="col-md-3" ng-repeat = "option in instance.option_answer.option2 track by $index">
+                                        <label for = "options">N@{{$index + 1}}</label>
+                                        <input id="option_answer.@{{ $index }}.answer" type="text" class="form-control" name="answer" ng-model="option.answer"  placeholder="level">
+                                    </div>
+
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-group col-md-12">
+                        <div class="panel panel-info" >
+                            <div class="panel-heading" >
+                              <h4 class="panel-title">
                                 <label class="checkbox-inline">
-                                    <input type="radio" class="form-check-input" ng-model="instance.option" value="option3">
+                                            <input type="radio" class="form-check-input" ng-model="instance.option" value="option3">
                                 </label>
-                                <a data-toggle="collapse" href="#option3" role="button" aria-expanded="false" aria-controls="collapseThree">
-                                    Option 3 
-                                </a>
-                            </th>
-                            <th class=" table-primary">
+                                <a  data-toggle="collapse" href="#option3"> EXTREMELY BAD - VERY BAD - BAD - GOOD - VERY GOOD - EXTREMELY GOOD</a>
+                              </h4>
+                            </div>
+                            <div id="option3" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                    <div class="col-md-3" ng-repeat = "option in instance.option_answer.option3 track by $index">
+                                        <label for = "options">N@{{$index + 1}}</label>
+                                        <input id="option_answer.@{{ $index }}.answer" type="text" class="form-control" name="answer" ng-model="option.answer"  placeholder="level">
+                                    </div>
+
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-group col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading" >
+                              <h4 class="panel-title">
                                 <label class="checkbox-inline">
                                     <input type="radio" class="form-check-input" ng-model="instance.option" value="option4">
                                 </label>
-                                <a data-toggle="collapse" href="#option4" role="button" aria-expanded="false" aria-controls="collapseFour">
-                                    Option 4       
-                                </a>
-                            </th>
-                            <th class=" table-primary">
+                                <a data-toggle="collapse" href="#option4" > VERY BAD - BAD - SOMEWHAT GOOD - GOOD - VERY GOOD - EXTREMELY GOOD</a>
+                                
+                              </h4>
+                            </div>
+                            <div id="option4" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                    <div class="col-md-3" ng-repeat = "option in instance.option_answer.option4 track by $index">
+                                        <label for = "options">N@{{$index + 1}}</label>
+                                        <input id="option_answer.@{{ $index }}.answer" type="text" class="form-control" name="answer" ng-model="option.answer"  placeholder="level">
+                                    </div>
+
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-group col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading" >
+                              <h4 class="panel-title">
                                 <label class="checkbox-inline">
                                     <input type="radio" class="form-check-input" ng-model="instance.option" value="others">
                                 </label>
-                                <a data-toggle="collapse" href="#others" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    Others      
-                                </a>
+                                <a data-toggle="collapse" href="#others" >Others </a>
+                                
+                              </h4>
+                            </div>
+                            <div id="others" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                    <label  style=" color:red" ><p class="text-center"> Sugere-se que utilize até 7 questões por motivos de  limitações cognitivas dos respondentes</p></label>
+                                    <div class="col-md-3" ng-repeat = "option in instance.option_answer.others track by $index">
+                                        <label for = "options">N@{{$index + 1}}</label>
+                                        <input id="option_answer.@{{ $index }}.answer" type="text" class="form-control" name="answer" ng-model="option.answer"  placeholder="level">
+                                        <a class="pull-right btn btn-danger btn-xs" ng-click="deleteOption(this)"><span
+                                        class="glyphicon glyphicon-remove"></span></a>
+                                    </div>
+                                    <div class = "col-md-3">
+                                        <div class = "form-group-sm">
+                                            <label for = "answer">&nbsp;</label>
+                                            <div>
+                                                <a class = "btn btn-info btn-sm" href = "javascript:void(0)" ng-click = "addOp()"><span class = "glyphicon glyphicon-plus"></span>Add</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>   
+            <div class="row">
+                <div class="form-group">
+                    <div class = "col-md-2" ng-show="instance.id == null" >
+                        <button type="submit" class="btn btn-primary" ng-click='store({{ Auth::user()->id }})'>
+                            Register
+                        </button>
+                    </div>
+                    <div class = "col-md-2" ng-show="instance.id != null">
+                        <button type="submit" class="btn btn-primary" ng-click='store({{ Auth::user()->id }})'>
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- <table class="table table-bordered " > 
+                        <tr class="table-primary">
+                            <th class=" table-primary" data-toggle="collapse" data-target="#option1" href="#option1" role="button" aria-expanded="false" aria-controls="collapseOne" data-parent="#myGroup">
+                                <label class="checkbox-inline">
+                                    <input type="radio" class="form-check-input" ng-model="instance.option" value="option1">
+                                </label>
+                                <a>Option 1</a>
+                            </th>
+                            <th data-toggle="collapse" data-target="#option2" href="#option2" role="button" aria-expanded="false" aria-controls="collapseTwo">
+                                <label class="checkbox-inline" data-parent="#myGroup">
+                                    <input type="radio" class="form-check-input" ng-model="instance.option" value="option2">
+                                </label>
+                                <a>Option 2 </a>
+                            </th>
+                            <th data-toggle="collapse" data-target="#option3" href="#option3" role="button" aria-expanded="false" aria-controls="collapseThree" data-parent="#myGroup">
+                                <label class="checkbox-inline">
+                                    <input type="radio" class="form-check-input" ng-model="instance.option" value="option3">
+                                </label>
+                                <a>Option 3</a>
+                            </th>
+                            <th class=" table-primary" data-toggle="collapse" data-target="#option4" href="#option4" role="button" aria-expanded="false" aria-controls="collapseFour" data-parent="#myGroup">
+                                <label class="checkbox-inline">
+                                    <input type="radio" class="form-check-input" ng-model="instance.option" value="option4">
+                                </label>
+                                <a>Option 4</a>
+                            </th>
+                            <th class=" table-primary" data-toggle="collapse" data-target="#others" href="#others" role="button" aria-expanded="false" aria-controls="collapseExample" data-parent="#myGroup">
+                                <label class="checkbox-inline">
+                                    <input type="radio" class="form-check-input" ng-model="instance.option" value="others">
+                                </label>
+                                <a>Others</a>
                             </th>
                         </tr>
 
@@ -170,6 +302,7 @@
                         </div>
                         <div class="collapse" id="others">
                           <div class="card card-body">
+                            <label  style=" color:red" ><p class="text-center"> Sugere-se que utilize até 7 questões por motivos de  limitações cognitivas dos correspondentes</p></label>
                             <div class="col-md-3" ng-repeat = "option in instance.option_answer.others track by $index">
                                 <label for = "options">N@{{$index + 1}}</label>
                                 <input id="option_answer.@{{ $index }}.answer" type="text" class="form-control" name="answer" ng-model="option.answer"  placeholder="level">
@@ -186,44 +319,4 @@
                             </div>
                           </div>
                         </div>
-                    </div>
-                </div>     
-            </div>   
-            <div class="row">
-                <div class="form-group">
-                    <div class = "col-md-2" ng-show="instance.id == null" >
-                        <button type="submit" class="btn btn-primary" ng-click='store({{ Auth::user()->id }})'>
-                            Register
-                        </button>
-                    </div>
-                    <div class = "col-md-2" ng-show="instance.id != null">
-                        <button type="submit" class="btn btn-primary" ng-click='store({{ Auth::user()->id }})'>
-                            Update
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
- <!-- <div class = "box-body ">
-                    <div class="form-group">
-                        <div class="col-md-3" ng-repeat = "option in instance.option_answer track by $index">
-                            <label for = "options">N@{{$index + 1}}</label>
-                            <input id="option_answer.@{{ $index }}.answer" type="text" class="form-control" name="answer" ng-model="option.answer"  placeholder="level">
-                        </div>
-
-                        <div class = "col-md-3">
-                            <div class = "form-group-sm">
-                                <label for = "answer">&nbsp;</label>
-                                <div>
-                                    <a class = "btn btn-info btn-sm" href = "javascript:void(0)" ng-click = "addOp()"><span class = "glyphicon glyphicon-plus"></span>Add</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>  --> 
+                    </div> -->

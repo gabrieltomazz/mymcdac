@@ -17,4 +17,7 @@ class OptionAnswerController extends Controller
 	 	OptionAnswer::findOrFail($id)->delete();
 	 }
 
+	 public function removeByIdProject($project_id){
+	 	OptionAnswer::where('project_id',$project_id)->delete();
+	 }
 }

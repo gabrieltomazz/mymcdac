@@ -1,12 +1,15 @@
 app.controller("ProjectController", ['$scope','$http','$window','$timeout', function ($scope, $http,$window,$timeout) {
 
 	$scope.instance;
+	$scope.old_option;
 	$scope.filtros = {
 		'filtros': {
 			'limit': 100
 		}
 	};
-
+	$scope.reloadPage = function(){
+		location.reload();
+	};
 	$scope.reset = function(){
 		$scope.instance = {
 			'id' : null,
@@ -58,6 +61,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 					'answer': 'Extremely good',
 				}],
 				'others': [{ 
+					'N':1 ,
 					'answer': null,
 				}]
 			}	
@@ -65,7 +69,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 	};
 
 	$scope.addOp = function(){
-		$scope.instance.option_answer.others.push({});
+		$scope.instance.option_answer.others.push({ 'N':($scope.instance.option_answer['others'].length +1),  'answer': null,});
 
 	};
 
@@ -101,6 +105,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 		$http.get('/projects/find_project/'+id).then(function (response) {
 
 			$scope.instance.option_answer[response.data.option] = response.data.option_answer;
+			$scope.old_option = response.data.option;
 			response.data.option_answer = $scope.instance.option_answer;
 			$scope.instance = response.data;
 
@@ -114,10 +119,12 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 	$scope.store = function(id){
 		
-		$scope.instance.user_id = id ;
+		$scope.instance.user_id = id;
 		loadingCenter("pageContent",true);
+		if($scope.old_option != $scope.instance.option){
+			deleteOptionBeforeSaveNew($scope.instance.id)
+		}
 		prepareToSaveOptionsAnswer($scope.instance.option_answer[$scope.instance.option],$scope.instance.option);
-
 		$http.post("/projects/store",$scope.instance).then(function (response) {
 
 			if (!$scope.instance.id){
@@ -144,14 +151,28 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 		}
 		$scope.instance.option_answer = $scope.instance.option_answer[option];
 	};
-	
+
+	var deleteOptionBeforeSaveNew = function(project_id){
+
+		$http.get('/option_answer/remove_by_project/' + project_id).then(function (response) {
+
+
+			}, function (response) {
+			}).finally(function () {
+
+				loadingTop("pageBody", false);
+
+		});
+
+	}
+
 	$scope.deleteOption = function(scope){
 
 		if(scope.option.id == null){
         	for(var i in $scope.instance.option_answer['others']){
-            	if($scope.instance.option_answer['others'][i].answer == scope.option.answer){
-            		//$scope.instance.option_answer[$scope.instance.option][i].splice();
+            	if($scope.instance.option_answer['others'][i].N == scope.option.N){
             		arrRemove($scope.instance.option_answer['others'],$scope.instance.option_answer['others'][i]);
+            		return;
             	}
             }
         }else{
