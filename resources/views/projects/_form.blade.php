@@ -94,10 +94,10 @@
                         <div class="panel panel-info">
                             <div class="panel-heading" >
                               <div >
-                                <label class="checkbox-inline">
-                                    <input type="radio" class="form-check-input" ng-model="instance.option" value="option1">
+                                <label href="#option1" class="checkbox-inline">
+                                    <input type="radio"  class="form-check-input" ng-model="instance.option" value="option1">
                                 </label>
-                                <a data-toggle="collapse" href="#option1"> POOR - FAIR - GOOD - VERY GOOD</a>
+                                <a data-toggle="collapse" href="#option1"> Poor - Fair - Good - Very Good </a>
                                 
                               </div>
                             </div>
@@ -119,7 +119,7 @@
                                 <label class="checkbox-inline">
                                         <input type="radio" class="form-check-input" ng-model="instance.option" value="option2">
                                 </label>
-                                <a data-toggle="collapse" href="#option2" > VERY POOR - POOR - FAIR - GOOD - VERY GOOD</a>
+                                <a data-toggle="collapse" href="#option2" > Very Poor - Poor - Fair - Good - Very good </a>
                                 
                               </div>
                             </div>
@@ -141,7 +141,7 @@
                                 <label class="checkbox-inline">
                                             <input type="radio" class="form-check-input" ng-model="instance.option" value="option3">
                                 </label>
-                                <a  data-toggle="collapse" href="#option3"> EXTREMELY BAD - VERY BAD - BAD - GOOD - VERY GOOD - EXTREMELY GOOD</a>
+                                <a  data-toggle="collapse" href="#option3"> Extremely bad - Very bad - Bad - Good - Very good - Extremely good</a>
                               </div>
                             </div>
                             <div id="option3" class="panel-collapse collapse">
@@ -160,9 +160,9 @@
                             <div class="panel-heading" >
                               <div>
                                 <label class="checkbox-inline">
-                                    <input type="radio" class="form-check-input" ng-model="instance.option" value="option4">
+                                    <input type="radio" href="#option4" class="form-check-input" ng-model="instance.option" value="option4">
                                 </label>
-                                <a data-toggle="collapse" href="#option4" > VERY BAD - BAD - SOMEWHAT GOOD - GOOD - VERY GOOD - EXTREMELY GOOD</a>
+                                <a data-toggle="collapse" href="#option4" > Very bad - Bad - Somewhat good - Good - Very good - Extremely good</a>
                                 
                               </div>
                             </div>
