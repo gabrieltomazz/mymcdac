@@ -93,13 +93,13 @@
                     <div class="panel-group col-md-12">
                         <div class="panel panel-info">
                             <div class="panel-heading" >
-                              <h4 class="panel-title">
+                              <div >
                                 <label class="checkbox-inline">
-                                            <input type="radio" class="form-check-input" ng-model="instance.option" value="option1">
+                                    <input type="radio" class="form-check-input" ng-model="instance.option" value="option1">
                                 </label>
                                 <a data-toggle="collapse" href="#option1"> POOR - FAIR - GOOD - VERY GOOD</a>
                                 
-                              </h4>
+                              </div>
                             </div>
                             <div id="option1" class="panel-collapse collapse">
                               <div class="panel-body">
@@ -115,13 +115,13 @@
                     <div class="panel-group col-md-12">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                              <h4 class="panel-title">
+                              <div>
                                 <label class="checkbox-inline">
                                         <input type="radio" class="form-check-input" ng-model="instance.option" value="option2">
                                 </label>
                                 <a data-toggle="collapse" href="#option2" > VERY POOR - POOR - FAIR - GOOD - VERY GOOD</a>
                                 
-                              </h4>
+                              </div>
                             </div>
                             <div id="option2" class="panel-collapse collapse">
                               <div class="panel-body">
@@ -137,12 +137,12 @@
                     <div class="panel-group col-md-12">
                         <div class="panel panel-info" >
                             <div class="panel-heading" >
-                              <h4 class="panel-title">
+                              <div>
                                 <label class="checkbox-inline">
                                             <input type="radio" class="form-check-input" ng-model="instance.option" value="option3">
                                 </label>
                                 <a  data-toggle="collapse" href="#option3"> EXTREMELY BAD - VERY BAD - BAD - GOOD - VERY GOOD - EXTREMELY GOOD</a>
-                              </h4>
+                              </div>
                             </div>
                             <div id="option3" class="panel-collapse collapse">
                               <div class="panel-body">
@@ -158,13 +158,13 @@
                     <div class="panel-group col-md-12">
                         <div class="panel panel-info">
                             <div class="panel-heading" >
-                              <h4 class="panel-title">
+                              <div>
                                 <label class="checkbox-inline">
                                     <input type="radio" class="form-check-input" ng-model="instance.option" value="option4">
                                 </label>
                                 <a data-toggle="collapse" href="#option4" > VERY BAD - BAD - SOMEWHAT GOOD - GOOD - VERY GOOD - EXTREMELY GOOD</a>
                                 
-                              </h4>
+                              </div>
                             </div>
                             <div id="option4" class="panel-collapse collapse">
                               <div class="panel-body">
@@ -180,13 +180,13 @@
                     <div class="panel-group col-md-12">
                         <div class="panel panel-info">
                             <div class="panel-heading" >
-                              <h4 class="panel-title">
+                              <div>
                                 <label class="checkbox-inline">
                                     <input type="radio" class="form-check-input" ng-model="instance.option" value="others">
                                 </label>
                                 <a data-toggle="collapse" href="#others" >Others </a>
                                 
-                              </h4>
+                              </div>
                             </div>
                             <div id="others" class="panel-collapse collapse">
                               <div class="panel-body">
