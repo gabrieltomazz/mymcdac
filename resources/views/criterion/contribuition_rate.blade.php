@@ -1,6 +1,6 @@
 <div class="container" ng-controller="CriterionController" ng-init="find({{$id}})">
 	<div class="container" >
-		<h3> Effort Levels</h3>
+		<h3> Contribuition Rate</h3>
 	</div>
 	<div >
 		<!-- ng-repeat = "nos in listOfLevels track by $index" -->
@@ -11,7 +11,7 @@
 		            	<h3 class = "box-title"> General Criteria</h3>
 		        	</div>
 					<div class="text-right">
-          				<button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="saveEffort(listOfLevels)" >Save</button>
+          				<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="savePriority(nos.level)" >Save</button>
         			</div>		        
 		        </div>
 		        <div class = "box-body ">
@@ -19,7 +19,7 @@
 						<thead >
 						    <tr class="bg-primary">
 						      <th class="col-md-4">Criterian Name </th>
-						      <th class="col-md-1">Priority </th>
+						      <th class="col-md-1">Percent(%) </th>
 						    </tr>
 						</thead>
 				  		<tbody >
@@ -29,7 +29,7 @@
 						    	</td>
 						    	<td >
 						    		<div class="col-md-10">
-						    			<input class = "form-control" type="number" id="name" ng-value="project.number" >
+						    			<input class = "form-control" type = "number" id = "name" ng-model = "priority.percent">
 						    		</div>
 						    	</td>		
 						    </tr>
@@ -55,7 +55,7 @@
 			            	<h3 class = "box-title"> Level - @{{no.titleGroup}}</h3>
 			        	</div>
 						<div class="text-right">
-	          				<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveEffort(no.criteria)" >Save</button>
+	          				<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="savePriority(step)" >Save</button>
 	        			</div>		        
 			        </div>
 			        <div class = "box-body ">
@@ -63,7 +63,7 @@
 							<thead >
 							    <tr class="bg-primary">
 							      <th class="col-md-4">Criterian Name </th>
-							      <th class="col-md-1">Priority </th>
+							      <th class="col-md-1">Percent(%) </th>
 							    </tr>
 							</thead>
 					  		<tbody >
@@ -73,13 +73,16 @@
 							    	</td>
 							    	<td >
 							    		<div class="col-md-10">
-							    			<input class = "form-control" type="number" id="name" ng-value="effortNumber.number" >
+							    			<input class = "form-control" type = "number" id = "name" ng-model = "priority.percent">
 							    		</div>
-							    	</td>		
+							    	</td>	
 							    </tr>
 						  	</tbody>
 						</table>
 			        </div>
+			        <!-- <div class="box-footer">
+  						<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="savePriority(nos.level)" >Save</button>
+			        </div> -->
 		        </div>    
 		    </div>
 		</div>

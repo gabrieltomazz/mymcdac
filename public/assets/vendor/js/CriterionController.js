@@ -3,6 +3,7 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
 	$scope.instances = [];
 	$scope.project;
   $scope.listOfLevels = [];
+  $scope.effortNumber;
 
 
 	$scope.find = function(id){
@@ -30,50 +31,71 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
         loadingCenter("pageContent",false);
       });
   };
-
   var buildLevels = function(criterions){
+      var list_sequences = [];
       for(var i in criterions){
-        var step = checkLevelCriterion(criterions[i]);
-
-        if(checkIfLevelExist(step)){
-          createLevel(step);
-          insertCriterioOnList(step,criterions[i]);
-        }else{
-          insertCriterioOnList(step,criterions[i]);
+        if(criterions[i].criterion_id == null ){
+          list_sequences.push({
+            sequence :criterions[i].sequence,
+            sequences: [],
+          });
+          
+          $scope.listOfLevels.push({
+            level :criterions[i],
+            criterion: [],
+          });
         }
+      }
+      for(var u in list_sequences){
+        for(var v in criterions ){
+          var one = String(criterions[v].sequence).charAt(0);
+          if(list_sequences[u].sequence == one){
+            list_sequences[u].sequences.push(criterions[v].sequence);
 
-      } 
+          }
+        }
+      }
+      for(var u in list_sequences){
+        for(var v in criterions ){
+          var one = String(criterions[v].sequence).charAt(0);
+          if(list_sequences[u].sequence == one & criterions[v].criterion_id != null ){
+            checkLevelCriterion($scope.listOfLevels[u],criterions[v]);
+            //$scope.listOfLevels[u].criterion.push(criterions[v]);
+          }
+          
+        }
+      }
+  
+
   };
-  var checkLevelCriterion = function(criterian){
-      //var level;  
-      if(criterian.title.length == 1 ){
-        return 1;
+  var checkLevelCriterion = function(listCriterions,criterian){
+      var number = criterian.sequence.toString().length;
+      var titleLength = criterian.title.length;
+      if(listCriterions.criterion.length == 0 ){
+        listCriterions.criterion.push({
+            step :number > 1 ? criterian.sequence.toString().substring(0,number-1) : number,
+            titleGroup : criterian.title.substring(0,titleLength-1),
+            criteria: [criterian],
+          });
+      }else{
+        for(var i in listCriterions.criterion){
+          if(listCriterions.criterion[i].step == criterian.sequence.toString().substring(0,number-1) ){
+            listCriterions.criterion[i].criteria.push(criterian);
+            return;
+          }
+        }
+        listCriterions.criterion.push({
+              step :number > 1 ? criterian.sequence.toString().substring(0,number-1) : number,
+              titleGroup : criterian.title.substring(0,titleLength-1),
+              criteria: [criterian],
+            });
+         
       }
-      if(criterian.title.length == 3 ){
-        return 2;
-      }
-      if(criterian.title.length == 5 ){
-        return 3;
-      }
-      if(criterian.title.length == 7 ){
-        return 4;
-      }
-      if(criterian.title.length == 9 ){
-        return 5;
-      }    
   }; 
 
-  var checkIfLevelExist =  function(step){
-    
-    if($scope.listOfLevels.length > 0 ){
-      for(var i in $scope.listOfLevels){
-        if($scope.listOfLevels[i].level == step){
-          return false;
-        }
-      }
-      return true;
-    }
-    return true;
+  $scope.saveEffort = function(effort){
+    effort,$scope.effortNumber;
+
   };
 
   var createLevel =  function(step){

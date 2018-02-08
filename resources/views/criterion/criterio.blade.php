@@ -20,7 +20,7 @@
 	        class="glyphicon glyphicon-remove"></span></a>
 	    <a class="pull-right btn btn-info btn-xs" data-nodrag data-toggle="modal" data-target="#myModal" ng-click="findNode(node.title)" style="margin-right: 8px;"><span
 	        class="glyphicon glyphicon-edit"></span></a>     
-	    <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;"><span
+	    <a class="pull-right btn btn-primary btn-xs" data-nodrag  ng-click="newSubItem(this)"  style="margin-right: 8px;"><span
 	        class="glyphicon glyphicon-plus"></span></a> 
 	  </div>
 	  <ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}">
@@ -34,7 +34,7 @@
 				<div class="row">
 				  <div class="col-sm-12">
 				    <h3> Criterian Table</h3>
-				    <button type="button" class="btn btn-default" ng-click="newItem({{$id}})">New Criteria</button>
+				    <button type="button" class="btn btn-default" ng-click="newItem({{$id}})" >New Criteria</button>
 				    <button ng-click="expandAll()">Expand all</button>
 				    <button ng-click="collapseAll()">Collapse all</button>
 				  </div>
