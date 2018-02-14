@@ -28,7 +28,7 @@ class AccountController extends Controller
 
         $users = User::FindOrNew($request->id);
         $users->fill($request->all());
-        $users->save();
+        $users->update();
        
 
         return $users;
