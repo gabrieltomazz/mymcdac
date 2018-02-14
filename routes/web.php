@@ -21,13 +21,14 @@ Route::get('/', function () {
 
 Route::get('users', 'UsersController@index');
 Route::get('privacy_notice', 'UsersController@privacy');
-Route::get('account', 'AccountController@index')->name('account');
-Route::post('update', 'AccountController@update')->name('update');
+
 
 
 
 Route::group(['middleware' => 'auth'], function () {
 	//Route::post('/projects/store/?.*', 'ProjectController@store');
+	Route::get('account', 'AccountController@index')->name('account');
+	Route::post('update', 'AccountController@update')->name('update');
 	
 	Route::get('projects', 'ProjectController@index');
 	Route::get('projects/create', 'ProjectController@create');

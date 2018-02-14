@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.logged')
 
 @section('content')
 
-<div class="container">
+<div class="container" ng-controller="UsersController" ng-init="buildUser({{ Auth::user() }})">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+            <div class="panel panel-default" >
                 <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
@@ -16,7 +16,7 @@
                             <label for="name" class="col-md-4 control-label">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" ng-model="users.name" required autofocus >
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -39,7 +39,7 @@
                             <label for="university" class="col-md-4 control-label">University</label>
 
                             <div class="col-md-6">
-                                <input id="university" type="text" class="form-control" name="university" value="{{ Auth::user()->university }}" required autofocus>
+                                <input id="university" type="text" class="form-control" ng-model="users.university" name="university"  required autofocus>
 
                                 @if ($errors->has('university'))
                                     <span class="help-block">
@@ -53,7 +53,7 @@
                             <label for="country" class="col-md-4 control-label">Country</label>
 
                             <div class="col-md-6">
-                                <input id="country" type="text" class="form-control" name="country" value="{{ Auth::user()->country }}" required autofocus>
+                                <input id="country" type="text" class="form-control" ng-model="users.country" name="country" required autofocus>
 
                                 @if ($errors->has('country'))
                                     <span class="help-block">
@@ -65,7 +65,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" ng-click="update({{ Auth::user()->id }})">
                                     Update
                                 </button>
                             </div>

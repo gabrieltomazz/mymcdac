@@ -14,6 +14,27 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 		$scope.instance = {
 			'id' : null,
 			'option_answer': {
+				'positive': [{ 
+					'answer': 'Extremely good',
+				},{ 
+					'answer': 'Very Good',
+				},{ 
+					'answer': 'Good',
+				}],
+				'negative': [{ 
+					'answer': 'Poor',
+				}],
+				'neutral': [{ 
+					'N':1 ,
+					'answer': 'Neutral',
+				}]
+			}	
+		};
+	};
+	$scope.reset = function(){
+		$scope.instance = {
+			'id' : null,
+			'option_answer': {
 				'option1': [{ 
 					'answer': 'Poor',
 				},{ 
@@ -63,13 +84,37 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 				'others': [{ 
 					'N':1 ,
 					'answer': null,
+				}],
+				'positive': [{ 
+					'answer': 'Extremely good',
+				},{ 
+					'answer': 'Very Good',
+				},{ 
+					'answer': 'Good',
+				}],
+				'negative': [{ 
+					'answer': 'Poor',
+				}],
+				'neutral': [{ 
+					'N':1 ,
+					'answer': 'Neutral',
 				}]
 			}	
 		};
 	};
 
+
 	$scope.addOp = function(){
-		$scope.instance.option_answer.others.push({ 'N':($scope.instance.option_answer['others'].length +1),  'answer': null,});
+		$scope.instance.option_answer.others.push({'answer': null,});
+
+	};
+
+	$scope.addOpPositive = function(){
+		$scope.instance.option_answer.positive.unshift({'answer': null,});
+
+	};
+	$scope.addOpNegative= function(){
+		$scope.instance.option_answer.negative.push({'answer': null,});
 
 	};
 
@@ -213,3 +258,62 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 	$scope.reset();
 
 }]);
+
+
+// $scope.reset = function(){
+// 		$scope.instance = {
+// 			'id' : null,
+// 			'option_answer': {
+// 				'option1': [{ 
+// 					'answer': 'Poor',
+// 				},{ 
+// 					'answer': 'Fair',
+// 				},{ 
+// 					'answer': 'Good',
+// 				},{ 
+// 					'answer': 'Very good',
+// 				}],
+// 				'option2': [{ 
+// 					'answer': 'Very Poor',
+// 				},{ 
+// 					'answer': 'Poor',
+// 				},{ 
+// 					'answer': 'Fair',
+// 				},{ 
+// 					'answer': 'Good',
+// 				},{ 
+// 					'answer': 'Very good',
+// 				}],
+// 				'option3': [{ 
+// 					'answer': 'Extremely bad',
+// 				},{ 
+// 					'answer': 'Very bad',
+// 				},{ 
+// 					'answer': 'bad ',
+// 				},{ 
+// 					'answer': 'good ',
+// 				},{ 
+// 					'answer': 'Very good',
+// 				},{ 
+// 					'answer': 'Extremely good',
+// 				}],
+// 				'option4': [{ 
+// 					'answer': 'Very bad',
+// 				},{ 
+// 					'answer': 'bad',
+// 				},{ 
+// 					'answer': 'Somewhat good',
+// 				},{ 
+// 					'answer': 'Good',
+// 				},{ 
+// 					'answer': 'Very good',
+// 				},{ 
+// 					'answer': 'Extremely good',
+// 				}],
+// 				'others': [{ 
+// 					'N':1 ,
+// 					'answer': null,
+// 				}]
+// 			}	
+// 		};
+// 	};

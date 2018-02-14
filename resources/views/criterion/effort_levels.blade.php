@@ -19,7 +19,7 @@
 						<thead >
 						    <tr class="bg-primary">
 						      <th class="col-md-4">Criterian Name </th>
-						      <th class="col-md-1">Priority </th>
+						      <th class="col-md-1">Effort </th>
 						    </tr>
 						</thead>
 				  		<tbody >
@@ -63,7 +63,7 @@
 							<thead >
 							    <tr class="bg-primary">
 							      <th class="col-md-4">Criterian Name </th>
-							      <th class="col-md-1">Priority </th>
+							      <th class="col-md-1">Effort </th>
 							    </tr>
 							</thead>
 					  		<tbody >

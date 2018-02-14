@@ -74,6 +74,7 @@
     <script src="/assets/vendor/js/ProjectController.js"></script>
     <script src="/assets/vendor/js/CriterionController.js"></script>
     <script src="/assets/vendor/js/BasicExampleCtrl.js"></script>
+    <script src="/assets/vendor/js/UsersController.js"></script>
 
 <!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
  -->
@@ -118,13 +119,13 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{{ route('account') }}">
+                                            Account
+                                        </a>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
-                                        </a>
-                                        <a href="{{ route('account') }}">
-                                            Account
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
