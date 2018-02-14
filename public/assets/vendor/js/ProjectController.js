@@ -14,27 +14,6 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 		$scope.instance = {
 			'id' : null,
 			'option_answer': {
-				'positive': [{ 
-					'answer': 'Extremely good',
-				},{ 
-					'answer': 'Very Good',
-				},{ 
-					'answer': 'Good',
-				}],
-				'negative': [{ 
-					'answer': 'Poor',
-				}],
-				'neutral': [{ 
-					'N':1 ,
-					'answer': 'Neutral',
-				}]
-			}	
-		};
-	};
-	$scope.reset = function(){
-		$scope.instance = {
-			'id' : null,
-			'option_answer': {
 				'option1': [{ 
 					'answer': 'Poor',
 				},{ 
