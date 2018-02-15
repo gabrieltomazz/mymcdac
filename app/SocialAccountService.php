@@ -29,8 +29,8 @@ class SocialAccountService
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
                     'password' => '',
-                    'country' => '',
-                    'university' => '',   
+                    'country' => ' ',
+                    'university' => ' ',   
                 ]);
             }
 
