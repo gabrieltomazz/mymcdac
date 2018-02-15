@@ -40,5 +40,10 @@ return [
         'client_secret' => 'f4db2fa5b1117c15c96ceb50ccc4e514',
         'redirect' => 'https://mymcdac.herokuapp.com/callback',
     ],
+    'google' => [
+        'client_id'     => '846826041732-bsgs9kinjmjgcs9kcl7k99qgkjn768el.apps.googleusercontent.com',
+        'client_secret' => 'LDaNK-Hc8_yRez9HKDM1-3-I',
+        'redirect'      => 'https://mymcdac.herokuapp.com/callbackGoogle'
+    ]
 
 ];

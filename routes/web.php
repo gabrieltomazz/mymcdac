@@ -63,3 +63,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Facebook Routes
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
+
+Route::get('/redirectGoogle', 'SocialAuthController@redirectGoogle');
+Route::get('/callbackGoogle', 'SocialAuthController@callbackGoogle');
