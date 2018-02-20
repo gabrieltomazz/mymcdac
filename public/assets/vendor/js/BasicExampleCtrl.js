@@ -95,6 +95,7 @@
           project_id: project_id,
           criterion_id:null,
         });
+        $scope.nodeSelecionado = nodeData[node-1];
       };
 
       $scope.newSubItem = function (scope) {
@@ -102,7 +103,7 @@
         if(nodeData.nodes == null){
           nodeData.nodes = [];
         }
-        nodeData.nodes.push({
+        var node = nodeData.nodes.push({
           id:null,
           sequence: nodeData.sequence * 10 + (nodeData.nodes.length+1),
           title: nodeData.title + '.' + (nodeData.nodes.length + 1),
@@ -112,6 +113,7 @@
           project_id: nodeData.project_id,
           criterion_id: nodeData.id ,
         });
+        $scope.nodeSelecionado = nodeData.nodes[node-1];
       };
 
       $scope.collapseAll = function () {
