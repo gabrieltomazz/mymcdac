@@ -15,6 +15,17 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 			'id' : null,
 			'option_answer': {
 				'option1': [{ 
+					'answer': 'very Poor',
+				},{ 
+					'answer': 'Neutral',
+				},{ 
+					'answer': 'Good',
+				},{ 
+					'answer': 'Very good',
+				},{ 
+					'answer': 'Excelent',
+				}],
+				'option2': [{ 
 					'answer': 'Poor',
 				},{ 
 					'answer': 'Fair',
@@ -23,7 +34,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 				},{ 
 					'answer': 'Very good',
 				}],
-				'option2': [{ 
+				'option3': [{ 
 					'answer': 'Very Poor',
 				},{ 
 					'answer': 'Poor',
@@ -34,7 +45,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 				},{ 
 					'answer': 'Very good',
 				}],
-				'option3': [{ 
+				'option4': [{ 
 					'answer': 'Extremely bad',
 				},{ 
 					'answer': 'Very bad',
@@ -47,7 +58,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 				},{ 
 					'answer': 'Extremely good',
 				}],
-				'option4': [{ 
+				'option5': [{ 
 					'answer': 'Very bad',
 				},{ 
 					'answer': 'bad',

@@ -4,7 +4,7 @@
 
 <div ng-controller="BasicExampleCtrl" ng-init="find({{$id}})" >
 	<script type="text/ng-template" id="nodes_renderer.html">
-	  <div ui-tree-handle class="tree-node tree-node-content">
+	  <div ui-tree-handle data-nodrag class="tree-node tree-node-content">
 	    <a class="btn btn-success btn-xs" ng-if="node.nodes && node.nodes.length > 0" data-nodrag ng-click="toggle(this)"><span
 	        class="glyphicon"
 	        ng-class="{
@@ -33,7 +33,7 @@
 	    	<div class = "container">
 				<div class="row">
 				  <div class="col-sm-12">
-				    <h3> Criterian Table</h3>
+				    <h3> Criterian Tree</h3>
 				    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" ng-click="newItem({{$id}})" >New Criteria</button>
 				    <button ng-click="expandAll()">Expand all</button>
 				    <button ng-click="collapseAll()">Collapse all</button>
@@ -81,11 +81,14 @@
 			                <input class = "form-control" type = "text" id = "name" ng-model = "nodeSelecionado.name">
 			           	</div>
 					</div>
+				</div>
+				<div>
+					<label> The contribuittion rate, shows, in percent, what is the criterian importante...</label>
+					<label for = "name">Contribuition Rate: </label>
 				</div>	
 				<div class="form-group">
-					<div class = "col-md-2">
-						<div class = "form-group-sm">
-		                    <label for = "name">Percent(%)</label>
+					<div class = "form-group-sm">
+						<div class="col-md-2">
 		                    <input class = "form-control" type = "number" id = "name" ng-model = "nodeSelecionado.percent">
 		               	</div>
 					</div>
