@@ -49,7 +49,7 @@ class ProjectController extends Controller
         $project->user_id = $request->user_id;
     	$project->save();
         
-        $this->saveOptionsAnswer($project,$request->option_answer);
+        //$this->saveOptionsAnswer($project,$request->option_answer);
 
     	return $project;
     }

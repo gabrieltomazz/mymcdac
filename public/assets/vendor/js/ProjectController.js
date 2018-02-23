@@ -156,10 +156,10 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 		
 		$scope.instance.user_id = id;
 		loadingCenter("pageContent",true);
-		if($scope.old_option != $scope.instance.option){
-			deleteOptionBeforeSaveNew($scope.instance.id)
-		}
-		prepareToSaveOptionsAnswer($scope.instance.option_answer[$scope.instance.option],$scope.instance.option);
+		// if($scope.old_option != $scope.instance.option){
+		// 	deleteOptionBeforeSaveNew($scope.instance.id)
+		// }
+		//prepareToSaveOptionsAnswer($scope.instance.option_answer[$scope.instance.option],$scope.instance.option);
 		$http.post("/projects/store",$scope.instance).then(function (response) {
 
 			if (!$scope.instance.id){
