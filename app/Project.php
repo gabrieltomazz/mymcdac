@@ -8,14 +8,14 @@ class Project extends Model
 {  
 
      protected $fillable = [
-        'user_id','objetivo_pesquisa', 'objeto_pesquisa','desempenho','option','data_inicio','data_fim','steps',
+        'user_id','scale_id','objetivo_pesquisa', 'objeto_pesquisa','desempenho','option','data_inicio','data_fim','steps',
     ];
 
     public function user(){
         return $this->belongsTo(User::class);
     }
 
-    public function optionAnswer(){
-        return $this->hasMany(OptionAnswer::class);
+    public function scale(){
+        return $this->belongsTo(Scale::class);
     }
 }

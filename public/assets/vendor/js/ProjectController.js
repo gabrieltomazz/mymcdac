@@ -1,6 +1,7 @@
 app.controller("ProjectController", ['$scope','$http','$window','$timeout', function ($scope, $http,$window,$timeout) {
 
 	$scope.instance;
+	$scope.scales;
 	$scope.old_option;
 	$scope.filtros = {
 		'filtros': {
@@ -13,83 +14,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 	$scope.reset = function(){
 		$scope.instance = {
 			'id' : null,
-			'option_answer': {
-				'option1': [{ 
-					'answer': 'very Poor',
-				},{ 
-					'answer': 'Neutral',
-				},{ 
-					'answer': 'Good',
-				},{ 
-					'answer': 'Very good',
-				},{ 
-					'answer': 'Excelent',
-				}],
-				'option2': [{ 
-					'answer': 'Poor',
-				},{ 
-					'answer': 'Fair',
-				},{ 
-					'answer': 'Good',
-				},{ 
-					'answer': 'Very good',
-				}],
-				'option3': [{ 
-					'answer': 'Very Poor',
-				},{ 
-					'answer': 'Poor',
-				},{ 
-					'answer': 'Fair',
-				},{ 
-					'answer': 'Good',
-				},{ 
-					'answer': 'Very good',
-				}],
-				'option4': [{ 
-					'answer': 'Extremely bad',
-				},{ 
-					'answer': 'Very bad',
-				},{ 
-					'answer': 'bad ',
-				},{ 
-					'answer': 'good ',
-				},{ 
-					'answer': 'Very good',
-				},{ 
-					'answer': 'Extremely good',
-				}],
-				'option5': [{ 
-					'answer': 'Very bad',
-				},{ 
-					'answer': 'bad',
-				},{ 
-					'answer': 'Somewhat good',
-				},{ 
-					'answer': 'Good',
-				},{ 
-					'answer': 'Very good',
-				},{ 
-					'answer': 'Extremely good',
-				}],
-				'others': [{ 
-					'N':1 ,
-					'answer': null,
-				}],
-				'positive': [{ 
-					'answer': 'Extremely good',
-				},{ 
-					'answer': 'Very Good',
-				},{ 
-					'answer': 'Good',
-				}],
-				'negative': [{ 
-					'answer': 'Poor',
-				}],
-				'neutral': [{ 
-					'N':1 ,
-					'answer': 'Neutral',
-				}]
-			}	
+			
 		};
 	};
 
@@ -139,10 +64,8 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 		//id=1
 		$http.get('/projects/find_project/'+id).then(function (response) {
 
-			$scope.instance.option_answer[response.data.option] = response.data.option_answer;
-			$scope.old_option = response.data.option;
-			response.data.option_answer = $scope.instance.option_answer;
 			$scope.instance = response.data;
+			$scope.scale = {'id' : response.data.scale_id};
 
 		}, function (response) {
 			console.log('erro');
@@ -155,11 +78,8 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 	$scope.store = function(id){
 		
 		$scope.instance.user_id = id;
+		$scope.instance.scale_id = $scope.scale.id;
 		loadingCenter("pageContent",true);
-		// if($scope.old_option != $scope.instance.option){
-		// 	deleteOptionBeforeSaveNew($scope.instance.id)
-		// }
-		//prepareToSaveOptionsAnswer($scope.instance.option_answer[$scope.instance.option],$scope.instance.option);
 		$http.post("/projects/store",$scope.instance).then(function (response) {
 
 			if (!$scope.instance.id){
@@ -177,14 +97,19 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 
 	};
-	var prepareToSaveOptionsAnswer = function(options,option){
 
-		for(var i in options){
-			if(options[i].id == null){
-				$scope.instance.option_answer[option][i].id = null;
-			}
-		}
-		$scope.instance.option_answer = $scope.instance.option_answer[option];
+	$scope.getScales = function(){
+		loadingCenter("pageContent",true);
+		$http.get('/scale/all').then(function (response) {
+
+				$scope.scales = response.data;
+
+		}, function (response) {
+			console.log('erro');
+		}).finally(function(){
+			loadingCenter("pageContent",false);
+		});
+
 	};
 
 	var deleteOptionBeforeSaveNew = function(project_id){
@@ -247,14 +172,28 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 	$scope.reset();
 
+	$timeout(function(){
+
+		$scope.getScales();
+
+	},100);
+
 }]);
 
 
-// $scope.reset = function(){
-// 		$scope.instance = {
-// 			'id' : null,
-// 			'option_answer': {
+// 'option_answer': {
 // 				'option1': [{ 
+// 					'answer': 'very Poor',
+// 				},{ 
+// 					'answer': 'Neutral',
+// 				},{ 
+// 					'answer': 'Good',
+// 				},{ 
+// 					'answer': 'Very good',
+// 				},{ 
+// 					'answer': 'Excelent',
+// 				}],
+// 				'option2': [{ 
 // 					'answer': 'Poor',
 // 				},{ 
 // 					'answer': 'Fair',
@@ -263,7 +202,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 // 				},{ 
 // 					'answer': 'Very good',
 // 				}],
-// 				'option2': [{ 
+// 				'option3': [{ 
 // 					'answer': 'Very Poor',
 // 				},{ 
 // 					'answer': 'Poor',
@@ -274,7 +213,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 // 				},{ 
 // 					'answer': 'Very good',
 // 				}],
-// 				'option3': [{ 
+// 				'option4': [{ 
 // 					'answer': 'Extremely bad',
 // 				},{ 
 // 					'answer': 'Very bad',
@@ -287,7 +226,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 // 				},{ 
 // 					'answer': 'Extremely good',
 // 				}],
-// 				'option4': [{ 
+// 				'option5': [{ 
 // 					'answer': 'Very bad',
 // 				},{ 
 // 					'answer': 'bad',
@@ -303,7 +242,19 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 // 				'others': [{ 
 // 					'N':1 ,
 // 					'answer': null,
+// 				}],
+// 				'positive': [{ 
+// 					'answer': 'Extremely good',
+// 				},{ 
+// 					'answer': 'Very Good',
+// 				},{ 
+// 					'answer': 'Good',
+// 				}],
+// 				'negative': [{ 
+// 					'answer': 'Poor',
+// 				}],
+// 				'neutral': [{ 
+// 					'N':1 ,
+// 					'answer': 'Neutral',
 // 				}]
 // 			}	
-// 		};
-// 	};

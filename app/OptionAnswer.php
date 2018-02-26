@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class OptionAnswer extends Model
 {
     protected $fillable = [
-        'project_id','answer',
+        'scale_id','answer','neutral','good',
     ];
 
-    // public function project(){
-    //     return $this->belongsTo(Project::class);
-    // }
+    public function scale(){
+        return $this->belongsTo(Scale::class);
+    }
 }

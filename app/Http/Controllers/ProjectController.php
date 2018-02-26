@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
-use App\OptionAnswer;
+use App\Scale;
 use Carbon\Carbon;
 use App\Http\Requests;
 use App\Http\Requests\ProjectsFormRequest;
@@ -32,13 +32,12 @@ class ProjectController extends Controller
     }
 
     public function find($user_id){
-        $project = Project::with(['optionAnswer']);
-        $project->where('user_id',$user_id);
-        //dd($project);
+        $project = Project::where('user_id',$user_id);
         return $project->get();
     }
+    
     public function findProject($id){
-        return $project = Project::with(['optionAnswer'])->findOrFail($id);
+        return $project = Project::findOrFail($id);
     
     }
 
@@ -47,9 +46,8 @@ class ProjectController extends Controller
     	$project = Project::FindOrNew($request->id);
     	$project->fill($request->all());
         $project->user_id = $request->user_id;
+        $project->scale_id = $request->scale_id;
     	$project->save();
-        
-        //$this->saveOptionsAnswer($project,$request->option_answer);
 
     	return $project;
     }

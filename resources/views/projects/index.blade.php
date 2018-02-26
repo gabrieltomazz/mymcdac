@@ -20,9 +20,9 @@
 	                	<div >
 	                		<table class = "table table-hover table-striped table-bordered" id = "tabelaProjects">
 						        <tr>
-						            <th>Objeto de pesquisa</th>
-						            <th>data inicio</th>
-						            <th>Critérios</th>
+						            <th>Project locus</th>
+						            <th>Start date</th>
+						            <th>Criterian</th>
 						            <th></th>
 						        </tr>
 					        	<tbody >
@@ -35,7 +35,7 @@
 							           <td>@{{instance.data_inicio}}</td> 
 							           <td>
 	                                        <a href = "projects/@{{ instance.id }}/criterio/level">
-	                                            Criterio
+	                                            Criterian
 	                                        </a>
                                     	</td>
 							           <td class = "acoes">

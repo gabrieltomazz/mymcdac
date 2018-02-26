@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOptionAnswersTable extends Migration
+class CreateUserScalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,17 @@ class CreateOptionAnswersTable extends Migration
      */
     public function up()
     {
-        Schema::create('option_answers', function (Blueprint $table) {
+        Schema::create('user_scales', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('answer',45);
-            $table->boolean('neutral')->default(false);
-            $table->boolean('good')->default(false);
 
-            $table->timestamps();
-        
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->integer('scale_id')->unsigned()->nullable();
             $table->foreign('scale_id')->references('id')->on('scales')->onDelete('cascade');
 
 
-
+            $table->timestamps();
         });
     }
 
@@ -36,6 +34,6 @@ class CreateOptionAnswersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('option_answers');
+        Schema::dropIfExists('user_scales');
     }
 }

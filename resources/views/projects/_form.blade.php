@@ -86,18 +86,19 @@
             </div>
             <div class = "panel panel-primary">
                 <div class = "panel-heading">
-                    Measurement Scale
+                    <h5 class ="col-md-4">
+                        Measurement Scale
+                    </h5>    
+                    <div class="text-right">
+                        <button class="btn btn-success"  href="{{ url('/scale/create') }}">Create Scale <span class="glyphicon glyphicon-plus"></span></button>
+                    </div>
                 </div>
                 <div class = "panel-body ">
                     <label> You might choose here, the Measurement Scale used in your research survey. If you choose 'Other measurement scale' option, you should input the used scale</label>
                     <div class = " panel-group col-md-12">
-                        <select id = "option" class = "form-control" ng-model = "instance.option" required autofocus>
-                            <option ng-value ="1" >Very poor - Neutral - Good - Very Good - Excelent</option>
-                            <option ng-value ="2" >Poor - Fair - Good - Very Good</option>
-                            <option ng-value ="3" >Very Poor - Poor - Fair - Good - Very good </option>
-                            <option ng-value ="4" >Extremely bad - Very bad - Bad - Good - Very good - Extremely good</option>
-                            <option ng-value ="5" >Very bad - Bad - Somewhat good - Good - Very good - Extremely good</option>
-                        </select>
+                        <select id = "scale_id" class = "form-control" ng-model = "scale" ng-options = "scale.description for scale in scales track by scale.id">
+                                <option value = "">.: Selecione :.</option>
+                            </select>
                      </div>
                 </div>
             </div>   
