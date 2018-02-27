@@ -2,41 +2,43 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 	$scope.instance;
 	$scope.scales;
-	$scope.old_option;
-	$scope.filtros = {
-		'filtros': {
-			'limit': 100
-		}
-	};
+	$scope.scales_main;
+	$scope.scale_selected;
+
 	$scope.reloadPage = function(){
 		location.reload();
 	};
+
 	$scope.reset = function(){
 		$scope.instance = {
 			'id' : null,
-			
+		};
+		$scope.scale_selected ={
+			'description': null,
+			'option_answer': [{ 
+				'id': null,
+ 				'answer': null,
+ 				'neutral': 0,
+ 				'good': 0,
+ 			}],
 		};
 	};
 
 
 	$scope.addOp = function(){
-		$scope.instance.option_answer.others.push({'answer': null,});
-
-	};
-
-	$scope.addOpPositive = function(){
-		$scope.instance.option_answer.positive.unshift({'answer': null,});
-
-	};
-	$scope.addOpNegative= function(){
-		$scope.instance.option_answer.negative.push({'answer': null,});
-
+		$scope.scale_selected.option_answer.push({ 
+			'id': null,
+			'answer': null,
+			'neutral': 0,
+			'good': 0,
+ 		});
 	};
 
 	$scope.find = function(id){
 
 		loadingCenter("pageContent",true);
 		//id=1
+		getScaleByUser(id);
 		$http.get('/projects/find/'+id).then(function (response) {
 
 				$scope.instances = response.data;
@@ -79,6 +81,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 		
 		$scope.instance.user_id = id;
 		$scope.instance.scale_id = $scope.scale.id;
+		
 		loadingCenter("pageContent",true);
 		$http.post("/projects/store",$scope.instance).then(function (response) {
 
@@ -86,7 +89,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 				$scope.instance = response.data;
 			}
 
-			appInfo("Registro salvo com sucesso!");
+			appInfo("Successfully save!");
 
 			$window.location.href = '/projects/'+response.data.id+'/criterio/level';
 
@@ -98,9 +101,26 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 	};
 
-	$scope.getScales = function(){
+	var getScaleByUser = function(id){
 		loadingCenter("pageContent",true);
-		$http.get('/scale/all').then(function (response) {
+		$http.get('/scale/find_by_user/'+id).then(function (response) {
+
+				$scope.scales_main = response.data;
+
+		}, function (response) {
+			console.log('erro');
+		}).finally(function(){
+			loadingCenter("pageContent",false);
+		});
+
+
+	};
+
+	$scope.getScales = function(user_id){
+		
+		loadingCenter("pageContent",true);
+		
+		$http.get('/scale/all/'+user_id).then(function (response) {
 
 				$scope.scales = response.data;
 
@@ -112,33 +132,62 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 	};
 
-	var deleteOptionBeforeSaveNew = function(project_id){
+	$scope.findScale= function(id){
 
-		$http.get('/option_answer/remove_by_project/' + project_id).then(function (response) {
+		for (var i in $scope.scales_main){
 
+			if($scope.scales_main[i].id == id)
+				$scope.scale_selected = $scope.scales_main[i]; 
+		}
+	};
 
-			}, function (response) {
-			}).finally(function () {
+	$scope.saveScales = function(id){
 
-				loadingTop("pageBody", false);
+		var description="";
+		if($scope.scale_selected.user_id == null)
+			$scope.scale_selected.user_id = id;
 
+		for(var i in $scope.scale_selected.option_answer)
+		{
+			if( i == 0){
+				description = $scope.scale_selected.option_answer[i].answer;
+			}else{
+				description =  description + " - " + $scope.scale_selected.option_answer[i].answer;
+			}  
+		}
+		$scope.scale_selected.description = description;
+		
+		$http.post("/scale/store",$scope.scale_selected).then(function (response) {
+
+			appInfo("Successfully save!");
+
+			getScaleByUser(response.data.user_id);
+
+		}, function (response) {
+		}).finally(function(){
+			loadingCenter("pageContent",false);
 		});
+	
+	};
 
-	}
 
-	$scope.deleteOption = function(scope){
+	$scope.deleteOption = function(option){
 
-		if(scope.option.id == null){
-        	for(var i in $scope.instance.option_answer['others']){
-            	if($scope.instance.option_answer['others'][i].N == scope.option.N){
-            		arrRemove($scope.instance.option_answer['others'],$scope.instance.option_answer['others'][i]);
+
+		if (!confirm("Are you sure?"))
+			return;
+		if(option.id == null){
+        	for(var i in $scope.scale_selected.option_answer){
+            	if($scope.scale_selected.option_answer[i].$$hashKey == option.$$hashKey){
+            		arrRemove($scope.scale_selected.option_answer,option);
             		return;
             	}
             }
         }else{
-        	$http.get('/option_answer/remove/' + scope.option.id).then(function (response) {
+        	$http.get('/option_answer/remove/' + option.id).then(function (response) {
 
-				arrRemove($scope.instance.option_answer[$scope.instance.option], scope.option);
+				arrRemove($scope.scale_selected.option_answer, option);
+				$scope.saveScales();
 
 			}, function (response) {
 			}).finally(function () {
@@ -152,7 +201,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 	$scope.remove = function (instance) {
 
-		if (!confirm("Confirma a exclusão deste registro?"))
+		if (!confirm("Are you sure?"))
 			return;
 
 		loadingTop("pageBody", true);
@@ -170,13 +219,34 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 	};
 
+
+	$scope.removeScale = function (scale) {
+
+		if (!confirm("Are you sure?"))
+			return;
+
+		loadingTop("pageBody", true);
+
+		$http.get('/scale/remove/' + scale.id).then(function (response) {
+
+			arrRemove($scope.scales_main, scale);
+
+		}, function (response) {
+		}).finally(function () {
+
+			loadingTop("pageBody", false);
+
+		});
+
+	};
+
 	$scope.reset();
 
-	$timeout(function(){
+	// $timeout(function(){
 
-		$scope.getScales();
+	// 	$scope.getScales();
 
-	},100);
+	// },100);
 
 }]);
 

@@ -1,5 +1,5 @@
 
-<div class="container" >
+<div class="container" ng-init="getScales({{ Auth::user()->id }})">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary" >
@@ -86,12 +86,7 @@
             </div>
             <div class = "panel panel-primary">
                 <div class = "panel-heading">
-                    <h5 class ="col-md-4">
-                        Measurement Scale
-                    </h5>    
-                    <div class="text-right">
-                        <button class="btn btn-success"  href="{{ url('/scale/create') }}">Create Scale <span class="glyphicon glyphicon-plus"></span></button>
-                    </div>
+                        Measurement Scale  
                 </div>
                 <div class = "panel-body ">
                     <label> You might choose here, the Measurement Scale used in your research survey. If you choose 'Other measurement scale' option, you should input the used scale</label>

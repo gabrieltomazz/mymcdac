@@ -41,7 +41,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('option_answer/remove/{id}', 'OptionAnswerController@remove');
 	Route::get('option_answer/remove_by_project/{project_id}', 'OptionAnswerController@removeByIdProject');
 
-	Route::get('scale/all', "ScaleController@getScaleWithoutUser");
+	Route::get('scale/all/{id}', "ScaleController@getAll");
+	Route::get('scale/find_by_user/{id}', "ScaleController@getScaletUser");
+	Route::get('scale/remove/{id}', 'ScaleController@remove');
+	Route::post('scale/store/', 'ScaleController@store');
+
+
 
 	Route::get('projects/{project_id}/criterio', 'CriterionController@index');
 	Route::get('projects/{project_id}/criterio/level', 'CriterionController@level');

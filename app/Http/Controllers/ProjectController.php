@@ -32,7 +32,8 @@ class ProjectController extends Controller
     }
 
     public function find($user_id){
-        $project = Project::where('user_id',$user_id);
+        $project = Project::with(['scale']);
+        $project->where('user_id',$user_id);
         return $project->get();
     }
     
