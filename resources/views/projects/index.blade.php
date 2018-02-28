@@ -103,7 +103,6 @@
 		      <div class="modal-content">
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <!-- <h4 class="modal-title" ng-if ="nodeSelecionado.name == null">@{{nodeSelecionado.title}}</h4> -->
 		          <h4 class="modal-title"> Description: @{{scale_selected.description}} </h4>     
 		          	
 		        </div>
@@ -121,9 +120,9 @@
 						           <td> 
 						           		<input id="answer" type="text" class="form-control" name="answer" ng-model="option.answer"  placeholder="answer">
 						           	</td> 
-						           <td class="form-check"><input type="radio" name="checkneutral" class="form-check-input" ng-model="option.neutral" ng-change="changeNeutral(option)" ng-value=1 ng-disabled = "option.good == 1">@{{option.neutral}}</td>
+						           <td class="form-check"><input type="radio" name="checkneutral" class="form-check-input" ng-model="option.neutral" ng-change="changeNeutral(option)" ng-value=1 ng-disabled = "option.good == 1"></td>
 
-						           <td class="form-check"><input type="radio" name="checkgood" class="form-check-input" ng-model="option.good" ng-change="changeGood(option)" ng-value=1 ng-disabled = "option.neutral == 1">@{{option.good}} </td>
+						           <td class="form-check"><input type="radio" name="checkgood" class="form-check-input" ng-model="option.good" ng-change="changeGood(option)" ng-value=1 ng-disabled = "option.neutral == 1"></td>
 						           <td class = "acoes">
 	                                	<a href="" style="color:black"><i class = "fa fa-times" ng-click = "deleteOption(option)"></i></a>
 	                               </td> 
@@ -140,7 +139,7 @@
             			<a class = "btn btn-info btn-sm" href = "javascript:void(0)" ng-click = "addOp()">Add Answer <span class = "glyphicon glyphicon-plus"></span></a>
             		</div>
             		<div class="text-right">
-	       				<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveScales({{ Auth::user()->id }})">Save</button>
+	       				<button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="saveScales({{ Auth::user()->id }})">Save</button>
             		</div>
 		        </div>
 		      </div>
