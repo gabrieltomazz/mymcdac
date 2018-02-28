@@ -121,19 +121,9 @@
 						           <td> 
 						           		<input id="answer" type="text" class="form-control" name="answer" ng-model="option.answer"  placeholder="answer">
 						           	</td> 
-						           <!-- <td class="form-check"><input type="radio" name="checkneutral" class="form-check-input" ng-model="option.neutral" ng-value="option">@{{option.neutral	}}</td> -->
-						           <td> 
-						           		<select id = "neutral" class = "form-control" ng-model = "option.neutral" ng-disabled = "option.good == 1" >
-                                			<option ng-value = "1">Sim</option>
-                                			<option ng-value = "0">Não</option>
-                            			</select> 
-                            		</td>
-						           <td> 
-						           		<select id = "good" class = "form-control" ng-model = "option.good" ng-disabled = "option.neutral == 1">
-                                			<option ng-value = "1">Sim</option>
-                                			<option ng-value = "0">Não</option>
-                            			</select> 
-                            		</td>
+						           <td class="form-check"><input type="radio" name="checkneutral" class="form-check-input" ng-model="option.neutral" ng-change="changeNeutral(option)" ng-value=1 ng-disabled = "option.good == 1">@{{option.neutral}}</td>
+
+						           <td class="form-check"><input type="radio" name="checkgood" class="form-check-input" ng-model="option.good" ng-change="changeGood(option)" ng-value=1 ng-disabled = "option.neutral == 1">@{{option.good}} </td>
 						           <td class = "acoes">
 	                                	<a href="" style="color:black"><i class = "fa fa-times" ng-click = "deleteOption(option)"></i></a>
 	                               </td> 

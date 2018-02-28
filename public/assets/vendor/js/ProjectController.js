@@ -5,9 +5,26 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 	$scope.scales_main;
 	$scope.scale_selected;
 
-	$scope.reloadPage = function(){
-		location.reload();
-	};
+	
+
+
+	$scope.isChecked = false;
+
+    $scope.changeGood = function (option) {
+        for(var i  in $scope.scale_selected.option_answer){
+        	if($scope.scale_selected.option_answer[i].answer != option.answer && option.good == 1 ){
+        		$scope.scale_selected.option_answer[i].good =0;
+        	}
+        } 
+    };
+
+    $scope.changeNeutral = function (option) {
+        for(var i  in $scope.scale_selected.option_answer){
+        	if($scope.scale_selected.option_answer[i].answer != option.answer && option.neutral == 1  ){
+        		$scope.scale_selected.option_answer[i].neutral =0;
+        	}
+        } 
+    };
 
 	$scope.reset = function(){
 		$scope.instance = {
@@ -20,6 +37,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
  				'answer': null,
  				'neutral': 0,
  				'good': 0,
+ 				'delete':1,
  			}],
 		};
 	};
@@ -31,6 +49,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 			'answer': null,
 			'neutral': 0,
 			'good': 0,
+			'delete': $scope.scale_selected.option_answer.length +1, 
  		});
 	};
 
@@ -132,7 +151,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 	};
 
-	$scope.findScale= function(id){
+	$scope.findScale = function(id){
 
 		for (var i in $scope.scales_main){
 
@@ -176,16 +195,15 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 		if (!confirm("Are you sure?"))
 			return;
+
 		if(option.id == null){
-        	for(var i in $scope.scale_selected.option_answer){
-            	if($scope.scale_selected.option_answer[i].$$hashKey == option.$$hashKey){
-            		arrRemove($scope.scale_selected.option_answer,option);
-            		return;
-            	}
-            }
+            for(var i in $scope.scale_selected.option_answer ){
+            	if($scope.scale_selected.option_answer[i].delete == option.delete){}
+            	arrRemove($scope.scale_selected.option_answer, $scope.scale_selected.option_answer[i]);
+    		}
         }else{
         	$http.get('/option_answer/remove/' + option.id).then(function (response) {
-
+				
 				arrRemove($scope.scale_selected.option_answer, option);
 				$scope.saveScales();
 
