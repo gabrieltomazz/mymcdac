@@ -18,8 +18,8 @@
 	          'glyphicon-chevron-right': collapsed,
 	          'glyphicon-chevron-down': !collapsed
 	        }"></span></a>
-	     	<span ng-if ="node.name == null ">@{{node.title}}.</span> 
-	     	<span ng-if ="node.name != null ">@{{node.title}}. @{{node.name}} @{{node.percent}}% </span> 
+	     	<span ng-if ="node.percent == null ">@{{node.title}}. @{{node.name}}</span> 
+	     	<span ng-if ="node.percent != null ">@{{node.title}}. @{{node.name}} @{{node.percent}}% </span> 
 	     	
           	  
 	    
