@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('projects/find_project/{id}', 'ProjectController@findProject');
 	Route::get('projects/edit/{id}', "ProjectController@edit");
 	Route::get('projects/remove/{id}', 'ProjectController@remove');
+	Route::get('projects/answers_by_project/{id}', 'ProjectController@getAnswersByProject');
 
 	Route::get('option_answer/remove/{id}', 'OptionAnswerController@remove');
 	Route::get('option_answer/remove_by_project/{project_id}', 'OptionAnswerController@removeByIdProject');
@@ -47,12 +48,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('scale/store/', 'ScaleController@store');
 
 
-
-	Route::get('projects/{project_id}/criterio', 'CriterionController@index');
-	Route::get('projects/{project_id}/criterio/level', 'CriterionController@level');
-	Route::get('projects/{project_id}/criterio/level1', 'CriterionController@level1');
 	Route::get('projects/{project_id}/criterio', 'CriterionController@criterio');
+	Route::get('projects/{project_id}/criterio/contribution_rate', 'CriterionController@contributionRate');
+	Route::get('projects/{project_id}/criterio/effort_level', 'CriterionController@effortLevel');
+	Route::get('projects/{project_id}/criterio/median_scale', 'CriterionController@medianScale');
+	
+	
 	Route::post('criterions/store/', 'CriterionController@store');
+	Route::post('criterions/store_details/', 'CriterionController@storeContributionOrEfoort');
 	Route::get('criterions/find/{id}', 'CriterionController@find');
 	Route::get('criterions/find_tree/{id}', 'CriterionController@findTree');
 	Route::get('criterions/remove/{id}', 'CriterionController@remove');

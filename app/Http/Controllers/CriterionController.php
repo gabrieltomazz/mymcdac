@@ -7,19 +7,28 @@ use App\Criterion;
 
 class CriterionController extends Controller
 {
-    public function index(){
-    	 return view('criterion.criterio');
-    }
-    public function level($id){
-         return view('criterion.level',[
+    public function criterio($id){
+         return view('criterion.criterio',[
             'id' => $id
         ]);
     }
-    public function level1(){
-         return view('criterion.level1');
+
+    public function contributionRate($id){
+         return view('criterion.contribution_rate',[
+            'id' => $id
+        ]);
     }
-    public function criterio(){
-         return view('criterion.criterio');
+
+    public function effortLevel($id){
+         return view('criterion.effort_levels',[
+            'id' => $id
+        ]);
+    }
+
+    public function medianScale($id){
+         return view('criterion.median_scale',[
+            'id' => $id
+        ]);
     }
 
     public function store(Request $request){

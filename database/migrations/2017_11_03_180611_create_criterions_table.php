@@ -17,7 +17,8 @@ class CreateCriterionsTable extends Migration
             $table->increments('id');
             $table->string('name',144);
             $table->string('title',45);
-            $table->integer('percent');
+            $table->integer('percent')->nullable();
+            $table->integer('effort')->nullable();
             $table->integer('sequence');
             $table->timestamps();
 

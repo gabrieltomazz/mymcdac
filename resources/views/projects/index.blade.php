@@ -36,7 +36,7 @@
 							           <td>@{{instance.scale.description | limitTo: 15}} (...)</td> 
 							           <td>@{{instance.data_inicio}}</td> 
 							           <td>
-	                                        <a href = "projects/@{{ instance.id }}/criterio/level">
+	                                        <a href = "projects/@{{ instance.id }}/criterio">
 	                                            Criterian
 	                                        </a>
                                     	</td>

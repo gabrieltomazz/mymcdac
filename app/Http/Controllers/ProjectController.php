@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+use App\OptionAnswer;
 use App\Scale;
 use Carbon\Carbon;
 use App\Http\Requests;
@@ -38,8 +39,18 @@ class ProjectController extends Controller
     }
     
     public function findProject($id){
-        return $project = Project::findOrFail($id);
+        $project = Project::with(['scale']);
+        $project->where('id',$id);
+        
+        return $project->get();
     
+    }
+
+    public function getAnswersByProject($id){
+        $project = Project::join('option_answers', 'option_answers.scale_id' ,'=' ,'projects.scale_id');
+        $project->where('projects.id',$id);
+
+        return $project->get();
     }
 
     public function store(ProjectsFormRequest $request){
@@ -51,28 +62,6 @@ class ProjectController extends Controller
     	$project->save();
 
     	return $project;
-    }
-
-    public function saveOptionsAnswer(Project $project, $answers ){
-        
-        foreach($answers as $answersArr){
-            
-            if($answersArr['id'] != null){
-              $optionAnswer = OptionAnswer::findOrNew($answersArr['id']);
-              $optionAnswer->id = $answersArr['id'];
-              $optionAnswer->answer = $answersArr['answer'];
-              $optionAnswer->project_id = $project->id;
-              $optionAnswer->save();  
-            }else{
-               $optionAnswer = new OptionAnswer($answersArr);
-               $optionAnswer->project_id = $project->id;
-               $optionAnswer->save(); 
-            }
-            
-        }  
-        // $optionAnswer->ruim = $answers->op['ruim'];
-        // $optionAnswer->regular = $answers->op['regular'];
-
     }
 
     public function remove($id){

@@ -8,7 +8,7 @@ class Criterion extends Model
 {
     protected $table = "criterions";
 	protected $fillable = [
-        'project_id','criterion_id', 'name','percent','sequence','title',
+        'project_id','criterion_id', 'name','percent','effort','sequence','title',
     ];
 
     public function node() {

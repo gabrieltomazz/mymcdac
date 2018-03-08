@@ -1,3 +1,12 @@
+@extends('layouts.logged')
+
+@section('content')
+
+<div class="container" ng-controller="ProjectController" ng-init="findProject('{{$id}}')">
+	<h2>@{{instance.objetivo_pesquisa}}</h2>
+	<p>@{{instance.objeto_pesquisa}}</p>
+</div>
+
 <div class="container" ng-controller="CriterionController" ng-init="find({{$id}})">
 	<div class="container" >
 		<h3> Effort Levels</h3>
@@ -11,7 +20,7 @@
 		            	<h3 class = "box-title"> General Criteria</h3>
 		        	</div>
 					<div class="text-right">
-          				<button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="saveEffort(listOfLevels)" >Save</button>
+          				<button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="saveContributionRateOrEffortGeneral(listOfLevels,'effort')" >Save</button>
         			</div>		        
 		        </div>
 		        <div class = "box-body ">
@@ -29,7 +38,7 @@
 						    	</td>
 						    	<td >
 						    		<div class="col-md-10">
-						    			<input class = "form-control" type="number" id="name" ng-value="project.number" >
+						    			<input class = "form-control" type="number" min="0" id="name" ng-model="no.level.effort" >
 						    		</div>
 						    	</td>		
 						    </tr>
@@ -42,7 +51,7 @@
 
 	<div class="col-md-12" ng-repeat = "nos in listOfLevels track by $index">
 		<!--  -->
-		<div class = "box box-success">	
+		<div class = "box box-success"  ng-show = "nos.criterion.length">	
 			<div class = "box-header with-border">
 	            <div class="col-md-4">
 	            	<h3 class = "box-title"> @{{nos.level.title}} - @{{nos.level.name}}</h3>
@@ -55,7 +64,7 @@
 			            	<h3 class = "box-title"> Level - @{{no.titleGroup}}</h3>
 			        	</div>
 						<div class="text-right">
-	          				<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveEffort(no.criteria)" >Save</button>
+	          				<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveContributionRateOrEffort(this.no,'effort')" >Save</button>
 	        			</div>		        
 			        </div>
 			        <div class = "box-body ">
@@ -73,7 +82,7 @@
 							    	</td>
 							    	<td >
 							    		<div class="col-md-10">
-							    			<input class = "form-control" type="number" id="name" ng-value="effortNumber.number" >
+							    			<input class = "form-control" type="number" min="0" max="99" id="name" ng-model="step.effort" >
 							    		</div>
 							    	</td>		
 							    </tr>
@@ -83,6 +92,17 @@
 		        </div>    
 		    </div>
 		</div>
+	</div>
+
+
+	<div class="panel-footer col-md-12">
+		<div class="col-md-6">
+			<a type="button" class="btn btn-danger"  href = "/projects/{{$id}}/criterio/contribution_rate">Back - Contribution rate</a>
+		</div>
+		<div class="col-md-6">
+			<a type="button" class="btn btn-success  pull-right"  href = "/projects/{{$id}}/criterio/median_scale">Next - Median Scale </a>
+		</div>
 	</div>	 
 </div>
 
+@endsection

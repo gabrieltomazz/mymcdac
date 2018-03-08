@@ -98,8 +98,7 @@
         $scope.nodeSelecionado = nodeData[node-1];
       };
 
-      $scope.newSubItem = function (scope) {
-        var nodeData = scope.$modelValue;
+      $scope.newSubItem = function (nodeData) {
         if(nodeData.nodes == null){
           nodeData.nodes = [];
         }
@@ -126,54 +125,22 @@
       
       $scope.animationsEnabled = true;
 
-      $scope.findNode =  function(title){
-          for (var i in $scope.data){
-          if($scope.data[i].title == title){
-
-            $scope.nodeSelecionado = $scope.data[i];
-          }else{
-              findNodes($scope.data[i].nodes,title);
-          }
-        }
-      };
-
-      var findNodes = function(data,title){
-
-        for (var i in data){
-          if(data[i].title == title){
-            $scope.nodeSelecionado =data[i];
-          }else{
-            findNodes(data[i].nodes,title);
-          }
-          
-        }
-      };
-
-      var findNodesSave =  function(data,title){
-          for (var i in data){
-            if(data[i].title == title){
-                data[i].name = $scope.nodeSelecionado.name;
-                data[i].percent = $scope.nodeSelecionado.percent;
-                $scope.save(data[i],i);
-                
-            }else{
-                findNodesSave(data[i].nodes,title);
-            }
-        }
+      $scope.findNode =  function(node){
+          $scope.nodeSelecionado = node
       };
 
       $scope.saveNodeSelecionado = function(saveNode){
-          findNodesSave($scope.data,saveNode.title);
+          $scope.save(saveNode);
       };
-      $scope.save = function(node,i){
+      $scope.save = function(node){
 
         loadingCenter("pageContent",true);
         //$scope.instance.project_id =1;
-
+        $scope.data;
         $http.post("/criterions/store",node).then(function (response) {
 
           appInfo("Registro salvo com sucesso!");
-          $scope.data[i].id = response.data.id ;
+          // $scope.data[i].id = response.data.id ;
           $scope.nodeSelecionado.id = response.data.id ;
           //location.reload();
 

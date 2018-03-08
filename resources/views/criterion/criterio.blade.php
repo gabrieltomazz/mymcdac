@@ -1,4 +1,11 @@
+@extends('layouts.logged')
 
+@section('content')
+
+<div class="container" ng-controller="ProjectController" ng-init="findProject('{{$id}}')">
+	<h2>@{{instance.objetivo_pesquisa}}</h2>
+	<p>@{{instance.objeto_pesquisa}}</p>
+</div>
 
 <!-- Nested node template -->
 
@@ -12,15 +19,15 @@
 	          'glyphicon-chevron-down': !collapsed
 	        }"></span></a>
 	     	<span ng-if ="node.name == null ">@{{node.title}}.</span> 
-	     	<span ng-if ="node.name != null ">@{{node.title}}. @{{node.name}}  @{{node.percent}}% </span> 
+	     	<span ng-if ="node.name != null ">@{{node.title}}. @{{node.name}} @{{node.percent}}% </span> 
 	     	
           	  
 	    
 	    <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="excluir(this)"><span
 	        class="glyphicon glyphicon-remove"></span></a>
-	    <a class="pull-right btn btn-info btn-xs" data-nodrag data-toggle="modal" data-target="#myModal" ng-click="findNode(node.title)" style="margin-right: 8px;"><span
+	    <a class="pull-right btn btn-info btn-xs" data-nodrag data-toggle="modal" data-target="#myModal" ng-click="findNode(node)" style="margin-right: 8px;"><span
 	        class="glyphicon glyphicon-edit"></span></a>     
-	    <a class="pull-right btn btn-primary btn-xs" data-nodrag data-toggle="modal" data-target="#myModal" ng-click="newSubItem(this)"  style="margin-right: 8px;"><span
+	    <a class="pull-right btn btn-primary btn-xs" data-nodrag data-toggle="modal" data-target="#myModal" ng-click="newSubItem(node)"  style="margin-right: 8px;"><span
 	        class="glyphicon glyphicon-plus"></span></a> 
 	  </div>
 	  <ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}">
@@ -59,6 +66,9 @@
 				</div>
 			</div>		  
 		</div>
+		<div class="panel-footer">
+			<a type="button" class="btn btn-success"  href = "/projects/{{$id}}/criterio/contribution_rate">Next - Contribution rate {{$id}}</a>
+		</div>
 	</div>
 
 	<div class="modal fade" id="myModal" role="dialog">
@@ -69,7 +79,7 @@
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
 	          <!-- <h4 class="modal-title" ng-if ="nodeSelecionado.name == null">@{{nodeSelecionado.title}}</h4> -->
-	          <h4 class="modal-title">@{{nodeSelecionado.name}} - @{{nodeSelecionado.title}}</h4>     
+	          <h4 class="modal-title" ng-show="nodeSelecionado.name != null ">@{{nodeSelecionado.name}} - @{{nodeSelecionado.title}}</h4>     
 	          	
 	        </div>
 	        <div class="modal-body">
@@ -82,33 +92,31 @@
 				           	</div>
 						</div>
 					</div>
-					<div>
+					<!-- <div>
 						<label> The contribuittion rate, shows, in percent, what is the criterian importante...</label>
 						<label for = "name">Contribuition Rate: </label>
 					</div>	
 					<div class="form-group">
 						<div class = "form-group-sm">
 							<div class="col-md-2">
-			                    <input class = "form-control" type = "number" id = "name" ng-model = "nodeSelecionado.percent">
+			                    <input class = "form-control" type = "number" id = "name" min="0" max="99" ng-model = "nodeSelecionado.percent" required="" autofocus>
 			               	</div>
 						</div>
-					</div>
+					</div> -->
 				</div>	
 	        </div>
 
 	        <div class="modal-footer">
-	          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveNodeSelecionado(nodeSelecionado)">Save</button>
+	          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save(nodeSelecionado)">Save</button>
 	        </div>
 	      </div>
 	      
 	    </div>
-  </div>
-
-
-
+  	</div>
 
 </div>	
 
 
 
 
+@endsection

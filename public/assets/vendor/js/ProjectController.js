@@ -110,7 +110,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 			appInfo("Successfully save!");
 
-			$window.location.href = '/projects/'+response.data.id+'/criterio/level';
+			$window.location.href = '/projects/'+response.data.id+'/criterio';
 
 		}, function (response) {
 		}).finally(function(){

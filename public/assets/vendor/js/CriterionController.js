@@ -4,7 +4,7 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
 	$scope.project;
   $scope.listOfLevels = [];
   $scope.effortNumber;
-
+  $scope.contribution;
 
 	$scope.find = function(id){
 
@@ -31,6 +31,7 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
         loadingCenter("pageContent",false);
       });
   };
+  
   var buildLevels = function(criterions){
       var list_sequences = [];
       for(var i in criterions){
@@ -68,6 +69,7 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
   
 
   };
+
   var checkLevelCriterion = function(listCriterions,criterian){
       var number = criterian.sequence.toString().length;
       var titleLength = criterian.title.length;
@@ -96,6 +98,62 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
   $scope.saveEffort = function(effort){
     effort,$scope.effortNumber;
 
+  };
+
+  $scope.saveContributionRateOrEffortGeneral = function(contribution,type){
+    
+    if(type == 'rate'){
+      var totalContribution = 0 ;
+      for(var i in contribution){
+        totalContribution = totalContribution + contribution[i].level.percent;
+      }
+      if(totalContribution > 100 || totalContribution < 100 ){
+        confirm("Contribution rate should be 100% ")
+        return;
+      }
+    }
+      
+    for(var i in contribution){
+      loadingCenter("pageContent",true);
+      //$scope.instance.project_id =1;
+
+      $http.post("/criterions/store",contribution[i].level).then(function (response) {
+
+
+      }, function (response) {
+      }).finally(function(){
+        loadingCenter("pageContent",false);
+      });
+    }
+    appInfo("Successfully save!");
+  };
+
+
+  $scope.saveContributionRateOrEffort = function(contribution,type){
+      
+    if(type == 'rate'){
+      var totalContribution = 0 ;
+
+      for(var i in contribution.criteria){
+        totalContribution = totalContribution + contribution.criteria[i].percent;
+      }
+      if(totalContribution > 100 || totalContribution < 100 ){
+        confirm("Contribution rate should be 100% ")
+        return;
+      }
+    }    
+    for(var i in contribution.criteria){
+      loadingCenter("pageContent",true);
+      //$scope.instance.project_id =1;
+
+      $http.post("/criterions/store",contribution.criteria[i]).then(function (response) {
+
+      }, function (response) {
+      }).finally(function(){
+        loadingCenter("pageContent",false);
+      });
+    }
+    appInfo("Successfully save!");
   };
 
   var createLevel =  function(step){
