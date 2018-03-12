@@ -75,24 +75,26 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 		$scope.instance.desempenho = desempenho.substring(0,3);
 	};
 
-	$scope.findProject = function(id){
+	$scope.findProject = function(id,user_id){
 
 		if (id == 'create'){
 			return;
 		}
-
+		$scope.getScales(user_id);
 		loadingCenter("pageContent",true);
 		//id=1
 		$http.get('/projects/find_project/'+id).then(function (response) {
-
-			$scope.instance = response.data;
-			$scope.scale = {'id' : response.data.scale_id};
+			
+			$scope.instance = response.data[0];
+			$scope.scale = {'id' : response.data[0].scale_id};
+				
 
 		}, function (response) {
 			console.log('erro');
 		}).finally(function(){
 			loadingCenter("pageContent",false);
 		});
+	
 
 	};
 
@@ -192,17 +194,11 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 	$scope.deleteOption = function(option){
 
-
 		if (!confirm("Are you sure?"))
 			return;
 
-		if(option.id == null){
-            for(var i in $scope.scale_selected.option_answer ){
-            	if($scope.scale_selected.option_answer[i].delete == option.delete){}
-            	arrRemove($scope.scale_selected.option_answer, $scope.scale_selected.option_answer[i]);
-    		}
-        }else{
-        	$http.get('/option_answer/remove/' + option.id).then(function (response) {
+		if(option.id != null){
+  			$http.get('/option_answer/remove/' + option.id).then(function (response) {
 				
 				arrRemove($scope.scale_selected.option_answer, option);
 				$scope.saveScales();
@@ -213,7 +209,8 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 				loadingTop("pageBody", false);
 
 			});
-
+        }else{
+			arrRemove($scope.scale_selected.option_answer, option);
         }
 	};
 
@@ -239,6 +236,13 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 
 	$scope.removeScale = function (scale) {
+
+		for(var i in $scope.instances){
+			if($scope.instances[i].scale_id == scale.id){
+				alert("Não foi possivel apagar está Escala, pois está liga a um projeto.	");
+				return;
+			}
+		}
 
 		if (!confirm("Are you sure?"))
 			return;

@@ -67,7 +67,7 @@
 			</div>		  
 		</div>
 		<div class="panel-footer">
-			<a type="button" class="btn btn-success"  href = "/projects/{{$id}}/criterio/contribution_rate">Next - Contribution rate {{$id}}</a>
+			<a type="button" class="btn btn-success"  href = "/projects/{{$id}}/criterio/contribution_rate">Next - Contribution rate</a>
 		</div>
 	</div>
 
@@ -88,7 +88,7 @@
 			        	<div class = "col-md-8">
 							<div class = "form-group-sm" >
 				                <label for = "name">Criterion Name: </label>
-				                <input class = "form-control" type = "text" id = "name" ng-model = "nodeSelecionado.name">
+				                <input class = "form-control" type = "text" id = "name" ng-model = "nodeSelecionado.name" autofocus>
 				           	</div>
 						</div>
 					</div>

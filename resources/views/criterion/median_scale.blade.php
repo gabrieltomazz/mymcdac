@@ -16,18 +16,18 @@
 			<table class="table table-striped table-bordered table-hover table-sm">
 			  <thead >
 			    <tr class="bg-primary">
-			      <th>Opções Modelo </th>
-			      <th>Nível Impacto</th>
-			      <th>Marque</th>
-			      <th>Escala</th>
+			      <th>Option Answer </th>
+			      <th>Impact level</th>
+			      <th>Mark</th>
+			      <th>Scale</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr ng-repeat = "opcoes in project track by $index">
+			    <tr ng-repeat = "opcoes in lastNode.scales track by $index">
 			      <th scope="row">@{{opcoes.answer}}</th>
 			      <td>N@{{$index + 1}}</td>
 			      <td><input type="radio" name="median" class="form-check-input"></td>
-			      <td>168</td>
+			      <td>@{{opcoes.value}}</td>
 			    </tr>
 			   
 			  </tbody>
@@ -46,6 +46,14 @@
 			<a type="button" class="btn btn-success  pull-right"  href = "/projects/{{$id}}/criterio/median_scale">Next</a>
 		</div>
 	</div>
+
+	<div class="col-sm-6">
+	    <div class="info">
+	      @{{info}}
+	    </div>
+	    <pre class="code">@{{ criterions | json }}</pre>
+  	</div>
+
 
 </div>
 
