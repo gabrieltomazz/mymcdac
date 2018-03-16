@@ -64,7 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('criterions/find_order/{id}', 'CriterionController@findOrder');
 	Route::get('criterions/find_order_project/{id}', 'CriterionController@findOrderWithProject');
 
-
+//teste
 
 });
 
