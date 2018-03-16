@@ -81,7 +81,7 @@ $scope.saveSort = function(id){
       }
     }
 
-    $http.post("/criterions/save_order/",$scope.data).then(function (response) {
+    $http.post("/criterions/save_order",$scope.data).then(function (response) {
 
       $window.location.href = '/projects/'+id+'/criterio/median_scale';
 
