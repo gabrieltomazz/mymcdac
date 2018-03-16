@@ -56,11 +56,12 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	
 	Route::post('criterions/store/', 'CriterionController@store');
+	Route::post('criterions/save_order/', 'CriterionController@saveSort');
+	
 	Route::post('criterions/store_details/', 'CriterionController@storeContributionOrEfoort');
 	Route::get('criterions/find/{id}', 'CriterionController@find');
 	Route::get('criterions/find_tree/{id}', 'CriterionController@findTree');
 	Route::get('criterions/remove/{id}', 'CriterionController@remove');
-	Route::post('criterions/save_order/', 'CriterionController@saveSort');
 	Route::get('criterions/find_order/{id}', 'CriterionController@findOrder');
 	Route::get('criterions/find_order_project/{id}', 'CriterionController@findOrderWithProject');
 
