@@ -100,7 +100,7 @@
 			<a type="button" class="btn btn-danger"  href = "/projects/{{$id}}/criterio/contribution_rate">Back - Contribution rate</a>
 		</div>
 		<div class="col-md-6">
-			<a type="button" class="btn btn-success  pull-right"  href = "/projects/{{$id}}/criterio/median_scale">Next - Median Scale </a>
+			<a type="button" class="btn btn-success  pull-right"  href = "/projects/{{$id}}/order_criterio">Next - Order Criterio </a>
 		</div>
 	</div>	 
 </div>

@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('projects/{project_id}/criterio/contribution_rate', 'CriterionController@contributionRate');
 	Route::get('projects/{project_id}/criterio/effort_level', 'CriterionController@effortLevel');
 	Route::get('projects/{project_id}/criterio/median_scale', 'CriterionController@medianScale');
+	Route::get('projects/{project_id}/order_criterio', 'CriterionController@orderCriterio');
 	
 	
 	Route::post('criterions/store/', 'CriterionController@store');
@@ -59,6 +60,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('criterions/find/{id}', 'CriterionController@find');
 	Route::get('criterions/find_tree/{id}', 'CriterionController@findTree');
 	Route::get('criterions/remove/{id}', 'CriterionController@remove');
+	Route::post('criterions/save_order/', 'CriterionController@saveSort');
+	Route::get('criterions/find_order/{id}', 'CriterionController@findOrder');
+	Route::get('criterions/find_order_project/{id}', 'CriterionController@findOrderWithProject');
 
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Criterion;
+use App\SortLastCriteria;
 
 class CriterionController extends Controller
 {
@@ -31,8 +32,13 @@ class CriterionController extends Controller
         ]);
     }
 
+    public function orderCriterio($id){
+         return view('criterion.order_criterion',[
+            'id' => $id
+        ]);
+    }
+
     public function store(Request $request){
-        //dd($project);
     	$criterion = Criterion::FindOrNew($request->id);
     	$criterion->fill($request->all());
         $criterion->criterion_id = $request->criterion_id;
@@ -43,6 +49,38 @@ class CriterionController extends Controller
 
     	return $criterion;
     }
+
+    public function saveSort(Request $request){
+        foreach($request->all() as $criteriaArr){
+            //SortLastCriteria::where('criterion_id',$criteriaArr['id'])->delete();
+
+            $criteria = SortLastCriteria::FirstOrNew(['criterion_id' =>$criteriaArr['id']]);
+            $criteria->criterion_id = $criteriaArr['id'];
+            $criteria->order = $criteriaArr['order'];
+            $criteria->project_id = $criteriaArr['project_id'];
+
+            $criteria->save();
+            
+        }
+        return $request;
+        
+    }
+
+    public function findOrder($project_id){
+        $criterion = SortLastCriteria::join('criterions','sort_last_criteria.criterion_id' ,'=' ,'criterions.id');
+        $criterion->where('sort_last_criteria.project_id',$project_id);
+        $criterion->orderBy('order','ASC');
+        return $criterion->get();
+    }
+
+    public function findOrderWithProject($project_id){
+        $criterion = SortLastCriteria::join('criterions','sort_last_criteria.criterion_id' ,'=' ,'criterions.id');
+        $criterion->where('sort_last_criteria.project_id',$project_id);
+        $criterion->with(['project']);
+        $criterion->orderBy('order','ASC');
+        return $criterion->get();
+    }
+
 
     public function find($project_id){
         
