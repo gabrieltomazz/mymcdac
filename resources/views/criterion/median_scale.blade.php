@@ -27,8 +27,8 @@
 				    <tr ng-repeat = "opcoes in lastNode.scales track by $index">
 				      <th scope="row">@{{opcoes.answer}}</th>
 				      <td>N@{{$index + 1}}</td>
-				      <td><input type="radio" name="median" class="form-check-input"></td>
-				      <td>loading...</td>
+				      <td><input type="radio" name="median" class="form-check-input" ng-model="opcoes.median"></td>
+				      <td>@{{opcoes.value}}</td>
 				    </tr>
 				   
 				  </tbody>
