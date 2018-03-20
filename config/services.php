@@ -37,7 +37,7 @@ return [
 
     'facebook' => [
         'client_id' => '119388388770301',
-        'client_secret' => 'f4db2fa5b1117c15c96ceb50ccc4e514',
+        'client_secret' => '3e6b5a165e3ce27d99eab166d8123292',
         'redirect' => 'https://mymcdac.herokuapp.com/callback',
     ],
     'google' => [
