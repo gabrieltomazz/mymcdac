@@ -41,11 +41,10 @@
 
 		<div class="panel-footer col-md-12">
 			<div class="col-md-6">
-				<a type="button" class="btn btn-danger"  href = "/projects/{{$id}}/order_criterio">Back - Order Criterio</a>
+				<a type="button" class="btn btn-danger"  href = "/projects/{{$id}}/order_criterio">Foward - Order Criterio</a>
 			</div>
 			<div class="col-md-6">
 				<a type="button" class="btn btn-success  pull-right"  href = "#">Next</a>
-				<!-- href = "/projects/{{$id}}/criterio/median_scale" -->
 			</div>
 		</div>
 	</div>

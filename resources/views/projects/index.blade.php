@@ -9,7 +9,7 @@
             <div class="panel panel-default">  
                <div class="panel-heading" > 
             		<div class="col-md-4"> 
-            			My MCDA-C Projects 
+            			My MCDA-C Projects <a href="" data-toggle="modal" data-target="#modalHelpProject" style="color:black"><i class = "fa fa-question-circle-o"></i></a> 
             		</div>
             		<div class="text-right">
 	       				<a href="{{ url('/projects/create') }}">Create Project <span class="glyphicon glyphicon-plus"></span></a>
@@ -56,7 +56,7 @@
             <div class="panel panel-default">  
                <div class="panel-heading" > 
             		<div class="col-md-4"> 
-            			My Scales 
+            			My Scales <a href="" data-toggle="modal" data-target="#modalHelpScale" style="color:black"><i class = "fa fa-question-circle-o"></i></a>
             		</div>
             		<div class="text-right">
 	       				<a href="#" data-toggle="modal" data-target="#myModal" ng-click="reset()">Create Scale <span class="glyphicon glyphicon-plus"></span></a>
@@ -102,8 +102,12 @@
 		      <!-- Modal content-->
 		      <div class="modal-content">
 		        <div class="modal-header">
-		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h4 class="modal-title"> Description: @{{scale_selected.description}} </h4>     
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title"> Description: @{{scale_selected.description}} </h4> 
+			        
+			        <p class="alert alert-danger" >
+						Note: You should start with smallest answer.
+					</p>    
 		          	
 		        </div>
 		        <div class="modal-body">
@@ -145,6 +149,39 @@
 		      </div>
 		      
 		    </div>
+	</div>
+
+
+	<div class="modal fade" id="modalHelpScale" role="dialog">
+	    <div class="modal-dialog">
+	      <!-- Modal content-->
+	     	<div class="modal-content">
+		        <div class="modal-header">
+		        	 <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title"> HELP</h4> 
+		        </div>
+		        <div class="modal-body">
+			        <div> Texto de ajuda para o usuario sobre my scales</div>
+		        </div>
+	    	</div>
+	      
+	    </div>
+	</div>
+
+	<div class="modal fade" id="modalHelpProject" role="dialog">
+	    <div class="modal-dialog">
+	      <!-- Modal content-->
+	     	<div class="modal-content">
+		        <div class="modal-header">
+		        	 <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title"> HELP</h4> 
+		        </div>
+		        <div class="modal-body">
+			        <div> Texto de ajuda para o usuario sobre projetos </div>
+		        </div>
+	    	</div>
+	      
+	    </div>
 	</div>
 
 </div>

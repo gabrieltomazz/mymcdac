@@ -62,6 +62,7 @@ $scope.data = [];
             {
               $scope.data[x].scales[u].value = 0;
               setNegativeValues(x,u);
+              setValuesBetweenScales(x,u);
           
             }else if($scope.data[x].scales[u].good == 1)
             {
@@ -102,6 +103,7 @@ $scope.data = [];
       if( i == $scope.data[position_data].scales.length -1)
       {
         $scope.data[position_data].scales[i].value = 100 + ($scope.data[position_data].project.steps)*($scope.data.length - position_data); 
+        
       }else
       {
         $scope.data[position_data].scales[i].value = 100 + ((($scope.data[position_data].project.steps)*($scope.data.length - position_data))/position_scale);
@@ -110,6 +112,27 @@ $scope.data = [];
       i--
     }
   }
+
+  var setValuesBetweenScales =  function(position_data,position_scale)
+  {
+    var qtd_central_answer = 0;
+    var x =  parseFloat(position_scale)+1;
+    while($scope.data[position_data].scales[position_scale].good != 1)
+    {
+     qtd_central_answer++;
+     position_scale++;
+    }
+
+    var value = 100/qtd_central_answer;
+    var factorMult =1;
+    while($scope.data[position_data].scales[x].good != 1)
+    {
+      $scope.data[position_data].scales[x].value = Math.round(value*factorMult);
+      x++;
+      factorMult++;
+    }
+
+  } 
 
   $scope.findCriterian = function(id){
 
