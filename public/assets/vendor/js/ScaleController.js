@@ -35,7 +35,7 @@ $scope.data = [];
     {
       if(isMarkMedianScale($scope.data[i].scales))
       {
-        alert("Please mark median criterian at criterian: "+$scope.data[i].title+" - " +$scope.data[i].name);
+        alert("Please mark median of criterian: "+$scope.data[i].title+" - " +$scope.data[i].name);
         return;
       }
     }
@@ -308,7 +308,7 @@ $scope.data = [];
   $timeout(function(){
     //$scope.findStore();
     $scope.fillDataWithResult();
-  },1500);
+  },2000);
 
 
 }]);
