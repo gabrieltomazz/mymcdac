@@ -106,7 +106,7 @@
 			        <h4 class="modal-title"> Description: @{{scale_selected.description}} </h4> 
 			        
 			        <p class="alert alert-danger" >
-						Note: You should start with smallest answer.
+						Note: You should start with lowest answer level.
 					</p>    
 		          	
 		        </div>

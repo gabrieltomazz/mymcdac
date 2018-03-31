@@ -3,7 +3,8 @@ app.controller("ScaleController", ['$scope','$http','$window','$timeout', functi
 $scope.criterions;
 $scope.dataFindOrder;
 $scope.answer;
-$scope.count = 1;
+$scope.listScaleResult = [];
+$scope.count = 0;
 
 $scope.data = [];
 
@@ -28,6 +29,52 @@ $scope.data = [];
   };
 
 
+  $scope.updateMedianChoose = function(id)
+  {
+    for(var i in $scope.data)
+    {
+      if(isMarkMedianScale($scope.data[i].scales))
+      {
+        alert("Please mark median criterian at criterian: "+$scope.data[i].title+" - " +$scope.data[i].name);
+        return;
+      }
+    }
+
+    $http.post("/criterions/save_scale_result",$scope.data).then(function (response) {
+
+        $window.location.href = '/projects/'+id+'/criterio/result';
+
+    }, function (response) {
+    }).finally(function(){
+        loadingCenter("pageContent",false);
+    });
+  };
+
+  var isMarkMedianScale  =  function(scales)
+  {
+    var isValid = true;
+    for(var x in scales)
+      {
+         if(scales[x].median == 1)
+         {
+            isValid = false;
+         }
+      }
+      return isValid;    
+  };
+
+  $scope.changeMedian = function (option, scales) {
+      
+      for(var i in scales)
+      {
+        if(scales[i] != option && scales[i].median == 1)
+        {
+          scales[i].median = 0;
+        } 
+      }
+  };
+
+
   $scope.findOrderProject = function(id){
     $scope.findAnswer(id);
     
@@ -43,15 +90,19 @@ $scope.data = [];
           for(var a in $scope.answer){
             $scope.data[i].scales.push(
               {
+                id: null,
+                n_id: $scope.count,
                 answer : $scope.answer[a].answer, 
                 value:null,
                 neutral: $scope.answer[a].neutral,
                 good : $scope.answer[a].good,
-                median : null,
+                median : 0,
+                criterion_id: $scope.data[i].id,
+                option_answer_id: $scope.answer[a].id,
               }
             );
           }
-              
+          $scope.count++;   
         }
 
         for(var x in $scope.data)
@@ -71,11 +122,13 @@ $scope.data = [];
             }
           }
         }
-       
+        $scope.getScaleResult(); 
+
     }, function (response) {
     }).finally(function(){
       loadingCenter("pageContent",false);
     });
+    
   };
 
   var setNegativeValues = function(position_data,position_scale)
@@ -219,9 +272,43 @@ $scope.data = [];
             lastNode(data[i].nodes);
           }else{
             $scope.data.push(data[i]);    
-        
           }
       }
-      
   };
+
+  $scope.fillDataWithResult = function()
+  {
+    for(var x in $scope.data)
+    {
+      for(var u in $scope.listScaleResult[x])
+      {
+        if($scope.listScaleResult[x][u].criterion_id == $scope.data[x].id)
+        {
+          $scope.data[x].scales[u].id = $scope.listScaleResult[x][u].id;
+          $scope.data[x].scales[u].median = $scope.listScaleResult[x][u].median;
+        }
+      }
+    }
+  };
+
+  $scope.getScaleResult = function()
+  {
+    for(var i in $scope.data)
+    {
+      loadingCenter("pageContent",true);
+      $http.get('/criterions/find_scale_result_by_criterion/'+$scope.data[i].id).then(function (response) {
+           $scope.listScaleResult.push(response.data); 
+      }, function (response) {
+      }).finally(function(){
+        loadingCenter("pageContent",false);
+      });
+    }  
+  }
+
+  $timeout(function(){
+    //$scope.findStore();
+    $scope.fillDataWithResult();
+  },1500);
+
+
 }]);

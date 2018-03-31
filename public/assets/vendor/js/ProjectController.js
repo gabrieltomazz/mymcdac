@@ -239,7 +239,7 @@ app.controller("ProjectController", ['$scope','$http','$window','$timeout', func
 
 		for(var i in $scope.instances){
 			if($scope.instances[i].scale_id == scale.id){
-				alert("Não foi possivel apagar está Escala, pois está liga a um projeto.	");
+				alert("Não foi possivel apagar está Escala, pois está liga a um projeto.");
 				return;
 			}
 		}

@@ -27,7 +27,7 @@
 				    <tr ng-repeat = "opcoes in lastNode.scales track by $index">
 				      <th scope="row">@{{opcoes.answer}}</th>
 				      <td>N@{{$index + 1}}</td>
-				      <td><input type="radio" name="median" class="form-check-input" ng-model="opcoes.median"></td>
+				      <td><input type="radio" name="median@{{opcoes.n_id}}" class="form-check-input" ng-change="changeMedian(opcoes,lastNode.scales)" ng-model="opcoes.median" ng-value=1></td>
 				      <td>@{{opcoes.value}}</td>
 				    </tr>
 				   
@@ -41,10 +41,10 @@
 
 		<div class="panel-footer col-md-12">
 			<div class="col-md-6">
-				<a type="button" class="btn btn-danger"  href = "/projects/{{$id}}/order_criterio">Foward - Order Criterio</a>
+				<a type="button" class="btn btn-danger"  href = "/projects/{{$id}}/order_criterio">Back - Order Criterio</a>
 			</div>
 			<div class="col-md-6">
-				<a type="button" class="btn btn-success  pull-right"  href = "#">Next</a>
+				<a type="button" class="btn btn-success  pull-right" ng-click="updateMedianChoose(id)">Next</a>
 			</div>
 		</div>
 	</div>
