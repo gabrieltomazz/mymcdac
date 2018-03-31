@@ -5,6 +5,7 @@ $scope.dataFindOrder;
 $scope.answer;
 $scope.listScaleResult = [];
 $scope.count = 0;
+$scope.loadPage = false;
 
 $scope.data = [];
 
@@ -289,6 +290,7 @@ $scope.data = [];
         }
       }
     }
+    $scope.loadPage = true;
   };
 
   $scope.getScaleResult = function()
@@ -306,7 +308,6 @@ $scope.data = [];
   }
 
   $timeout(function(){
-    //$scope.findStore();
     $scope.fillDataWithResult();
   },2000);
 
