@@ -39,6 +39,13 @@ class CriterionController extends Controller
         ]);
     }
 
+    public function result($id){
+         return view('criterion.result',[
+            'id' => $id
+        ]);
+    }
+
+
     public function store(Request $request){
     	$criterion = Criterion::FindOrNew($request->id);
     	$criterion->fill($request->all());
@@ -103,11 +110,18 @@ class CriterionController extends Controller
         return $criterion->get();
     }
 
-    public function findScaleResultByCriterion($criterion_id)
+    public function findScaleResultByCriterion(Request $criterions)
     {
-        $scales = ScaleResult::where('criterion_id',$criterion_id);
+        $listCriterions = [];
 
-        return $scales->get();
+        foreach($criterions->all() as $criterion_id)
+        {
+            $criterion = ScaleResult::where('criterion_id',$criterion_id['id']); 
+            $listCriterions[] = $criterion->get();
+             
+        }
+        return $listCriterions;
+        
     }
 
     public function find($project_id){

@@ -6,7 +6,7 @@ $scope.answer;
 $scope.listScaleResult = [];
 $scope.count = 0;
 $scope.loadPage = false;
-
+$scope.listCriterionIds = [];
 $scope.data = [];
 
   $scope.findOrder = function(id){
@@ -297,14 +297,17 @@ $scope.data = [];
   {
     for(var i in $scope.data)
     {
-      loadingCenter("pageContent",true);
-      $http.get('/criterions/find_scale_result_by_criterion/'+$scope.data[i].id).then(function (response) {
-           $scope.listScaleResult.push(response.data); 
-      }, function (response) {
-      }).finally(function(){
-        loadingCenter("pageContent",false);
-      });
-    }  
+      $scope.listCriterionIds.push({id: $scope.data[i].id} );
+    } 
+
+    loadingCenter("pageContent",true);
+    $http.post('/criterions/find_scale_result_by_criterion',$scope.listCriterionIds).then(function (response) {
+         $scope.listScaleResult = response.data; 
+    }, function (response) {
+    }).finally(function(){
+      loadingCenter("pageContent",false);
+    });
+   
   }
 
   $timeout(function(){

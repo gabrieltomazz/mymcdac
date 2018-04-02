@@ -8,7 +8,7 @@
 </div>
 
 <div ng-controller="ScaleController" ng-init="findOrderProject({{$id}})">
-	<div ng-if="!data.length || listScaleResult.length >= data.length || loadPage == true"> 
+	<div ng-if="loadPage == true"> 
 		<div class="container">	
 			<div ng-repeat = "lastNode in data">
 				<div class="container" >
@@ -42,7 +42,7 @@
 					<a type="button" class="btn btn-danger"  href = "/projects/{{$id}}/order_criterio">Back - Order Criterio</a>
 				</div>
 				<div class="col-md-6">
-					<a type="button" class="btn btn-success  pull-right" ng-click="updateMedianChoose(id)">Next</a>
+					<a type="button" class="btn btn-success  pull-right" ng-click="updateMedianChoose({{$id}})">Next</a>
 				</div>
 			</div>
 		</div>
