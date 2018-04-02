@@ -53,7 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('projects/{project_id}/criterio/effort_level', 'CriterionController@effortLevel');
 	Route::get('projects/{project_id}/criterio/median_scale', 'CriterionController@medianScale');
 	Route::get('projects/{project_id}/order_criterio', 'CriterionController@orderCriterio');
-	
+	Route::get('projects/{project_id}/criterio/result', 'CriterionController@result');
+				
 	
 	Route::post('criterions/store/', 'CriterionController@store');
 	Route::post('criterions/save_order/', 'CriterionController@saveSort');
@@ -65,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('criterions/remove/{id}', 'CriterionController@remove');
 	Route::get('criterions/find_order/{id}', 'CriterionController@findOrder');
 	Route::get('criterions/find_order_project/{id}', 'CriterionController@findOrderWithProject');
-	Route::get('criterions/find_scale_result_by_criterion/{id}', 'CriterionController@findScaleResultByCriterion');
+	Route::post('criterions/find_scale_result_by_criterion', 'CriterionController@findScaleResultByCriterion');
 
 //teste
 
