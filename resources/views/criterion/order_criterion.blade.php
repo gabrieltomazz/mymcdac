@@ -40,7 +40,7 @@
 		</div>
 		<div class="panel-footer">
 			<div class="col-md-6">
-				<a type="button" class="btn btn-danger"  href = "/projects/{{$id}}/criterio/effort_level">Back - Effort level</a>
+				<a type="button" class="btn btn-danger"  href = "/projects/{{$id}}/criterio/contribution_rate">Back - Contribution rate</a>
 			</div>
 			<div class="col-md-6">
 				<a type="button" class="btn btn-success  pull-right" ng-click="saveSort({{$id}})">Next - Median Scale</a>

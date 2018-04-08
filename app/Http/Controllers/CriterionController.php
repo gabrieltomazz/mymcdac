@@ -117,8 +117,10 @@ class CriterionController extends Controller
         foreach($criterions->all() as $criterion_id)
         {
             $criterion = ScaleResult::where('criterion_id',$criterion_id['id']); 
-            $listCriterions[] = $criterion->get();
-             
+            if($criterion->count() != null){
+                $listCriterions[] = $criterion->get();
+            }
+
         }
         return $listCriterions;
         

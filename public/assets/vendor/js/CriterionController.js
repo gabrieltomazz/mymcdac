@@ -7,17 +7,17 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
   $scope.contribution;
 
 	$scope.find = function(id){
+    
+    loadingCenter("pageContent",true);
+    $scope.findProject(id);
+    $http.get('/criterions/find/'+id).then(function (response) {
+      $scope.dataTree = response.data;
+      buildLevels(response.data);
 
-        loadingCenter("pageContent",true);
-        $scope.findProject(id);
-        $http.get('/criterions/find/'+id).then(function (response) {
-          $scope.dataTree = response.data;
-          buildLevels(response.data);
-
-        }, function (response) {
-        }).finally(function(){
-          loadingCenter("pageContent",false);
-        });
+    }, function (response) {
+    }).finally(function(){
+      loadingCenter("pageContent",false);
+    });
   };
 
   $scope.findProject = function(id){
@@ -156,6 +156,20 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
     appInfo("Successfully save!");
   };
 
+  $scope.isValidContributionRate =  function(id)
+  {
+    for(var i in $scope.dataTree)
+    {
+        if($scope.dataTree[i].percent == null)
+        {
+          alert("Please insert percent in criterian: "+$scope.dataTree[i].name+" and Save ");
+          return;
+        }
+    }
+    $window.location.href = '/projects/'+id+'/order_criterio';
+
+  };
+
   var createLevel =  function(step){
     $scope.listOfLevels.push({
           level :step,
@@ -171,44 +185,46 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
       }
   };
 
-	// Charts 1
-	$scope.labels = ["1.1", "1.2", "1.3"];
-	$scope.series = ['Series A', 'Series B', 'Series C'];
-	$scope.data = [
-		[170, 100, -66],
-		[100, 120, -20],
-		[-66, -20, -22]
-	];
-  $scope.onClick = function (points, evt) {
-    console.log(points, evt);
-  };
-  $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
-  
-  $scope.options = {
-    scales: {
-      yAxes: [
-        {
-          id: 'y-axis-1',
-          type: 'linear',
-          display: true,
-          position: 'left'
-        },
-        {
-          id: 'y-axis-2',
-          type: 'linear',
-          display: true,
-          position: 'right'
-        }
-      ]
-    }
-  };
-  // chart 2
-  $scope.label = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  $scope.serie = ['Series A', 'Series B'];
 
-  $scope.datas = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
-  ];
+
+	// // Charts 1
+	// $scope.labels = ["1.1", "1.2", "1.3"];
+	// $scope.series = ['Series A', 'Series B', 'Series C'];
+	// $scope.data = [
+	// 	[170, 100, -66],
+	// 	[100, 120, -20],
+	// 	[-66, -20, -22]
+	// ];
+ //  $scope.onClick = function (points, evt) {
+ //    console.log(points, evt);
+ //  };
+ //  $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+  
+ //  $scope.options = {
+ //    scales: {
+ //      yAxes: [
+ //        {
+ //          id: 'y-axis-1',
+ //          type: 'linear',
+ //          display: true,
+ //          position: 'left'
+ //        },
+ //        {
+ //          id: 'y-axis-2',
+ //          type: 'linear',
+ //          display: true,
+ //          position: 'right'
+ //        }
+ //      ]
+ //    }
+ //  };
+ //  // chart 2
+ //  $scope.label = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+ //  $scope.serie = ['Series A', 'Series B'];
+
+ //  $scope.datas = [
+ //    [65, 59, 80, 81, 56, 55, 40],
+ //    [28, 48, 40, 19, 86, 27, 90]
+ //  ];
 
 }]);

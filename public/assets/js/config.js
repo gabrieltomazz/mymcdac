@@ -8,11 +8,11 @@ app.config(['ChartJsProvider', function (ChartJsProvider) {
     // Configure all charts
     ChartJsProvider.setOptions({
       chartColors: ['#0080FF', '#FF8A80','#FF8000'],
-      responsive: false
+      responsive: true
     });
     // Configure all line charts
     ChartJsProvider.setOptions('line','data','labels','options','series','click','hover','colors','dataset-override',{
-      showLines: false
+      showLines: true
     });
 }]);
 

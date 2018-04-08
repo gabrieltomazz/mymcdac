@@ -100,7 +100,7 @@
 			<a type="button" class="btn btn-danger"  href = "/projects/{{$id}}/criterio">Back - Criterian table</a>
 		</div>
 		<div class="col-md-6">
-			<a type="button" class="btn btn-success  pull-right"  href = "/projects/{{$id}}/criterio/effort_level">Next - Effort level </a>
+			<a type="button" class="btn btn-success  pull-right"  ng-click="isValidContributionRate({{$id}})">Next - Order Criterio </a>
 		</div>
 	</div>	 
 </div>

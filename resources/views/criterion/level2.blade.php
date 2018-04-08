@@ -55,7 +55,21 @@
 						</canvas>
 					</div>
 		        </div>    
+	        </div>
+	        
+			<div class = "box box-primary">
+		        <div class = "box-header with-border panel-primary">
+		            <h3 class = "box-title">Gráfico - 2</h3>
+		        </div>
+		        <div class = "box-body ">
+		            <div class="row">
+						<canvas id="bar" class="chart chart-bar"
+	  					chart-data="datas" chart-labels="label" chart-series="serie">
+						</canvas>
+					</div>
+		        </div>    
 	        </div>   
+    		  
     	</div>
 
 
