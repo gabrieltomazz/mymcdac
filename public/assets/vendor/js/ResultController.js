@@ -397,7 +397,7 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 
 		calcChart2Total = (($scope.finalResult.performaceMedia + Math.abs($scope.finalResult.performaceMin))/(Math.abs($scope.finalResult.performaceMin) + $scope.finalResult.performaceMax + 1))*100;
 		$scope.mainChart2Data[0].push(100);
-		$scope.mainChart2Data[1].push(Math.round(calcChart2,4));
+		$scope.mainChart2Data[1].push(Math.round(calcChart2Total,4));
 		$scope.labelChart2.push("Total");	
 
 		$scope.mainLabels.push(['Total',$scope.finalResult.performaceMax,$scope.finalResult.performaceMedia,$scope.finalResult.performaceMin])
