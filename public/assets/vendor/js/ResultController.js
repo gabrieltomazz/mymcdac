@@ -6,10 +6,14 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
   	$scope.count = 0;
   	$scope.listScaleResult;
   	$scope.loadingData = false;
+  	$scope.showLeaf = true;
   	$scope.criterionIdsWithResults = [];
   	$scope.finalResult = [];
   	$scope.mainChartData = [[],[],[]];
 	$scope.mainLabels = [];
+	$scope.mainCriterian = [];
+	$scope.mainChart2Data = [[],[]];
+	$scope.labelChart2 = [];
 
 	$scope.find = function(id){
 	    loadingCenter("pageContent",true);
@@ -142,9 +146,6 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 			  
 			  $scope.listOfLevels.push({
 			    level :criterions[i],
-			    data: [[],[],[]],
-			    labels: [],
-			    series: [],
 			    criterion: [],
 			  });
 			}
@@ -167,21 +168,22 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 		      
 		    }
 		}
-		buildChart()
+		removeMainCriterian();
+		buildChart();
 		$scope.loadingData = true; 
 	};
 
 	var checkLevelCriterion = function(listCriterions,criterian){
     	var number = criterian.sequence.toString().length;
     	var titleLength = criterian.title.length;
-		//if(listCriterions.criterion.length == 0 ){
-			// listCriterions.criterion.push({
-			//     step :number > 1 ? criterian.sequence.toString().substring(0,number-1) : number,
-			//     titleGroup : criterian.title.substring(0,titleLength-1),
-			//     level: listCriterions.level,
-			//     criteria: [criterian],
-		 //    });
-		//}else{
+		if(listCriterions.criterion.length == 0 ){
+			 listCriterions.criterion.push({
+			     step :number > 1 ? criterian.sequence.toString().substring(0,number-1) : number,
+			     titleGroup : criterian.title.substring(0,titleLength-1),
+			     level: listCriterions.level,
+			     criteria: [criterian],
+		     });
+		}else{
 		    for(var i in listCriterions.criterion){
 		      if(listCriterions.criterion[i].step == criterian.sequence.toString().substring(0,number-1) ){
 		        listCriterions.criterion[i].criteria.push(criterian);
@@ -200,7 +202,7 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 					criteria: [criterian],
 			    });
 			}      
-		//}
+		}
 	};
 
 	var findDataWithoutResultAndFill = function(criterionIdsWithResults)
@@ -320,6 +322,21 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 		return false;
 	}
 
+	var removeMainCriterian = function()
+	{
+		for(var i in $scope.listOfLevels)
+		{
+			$scope.mainCriterian.push($scope.listOfLevels[i].criterion[0]);
+			arrRemove($scope.listOfLevels[i].criterion ,$scope.listOfLevels[i].criterion[0]);
+			
+			if($scope.listOfLevels[i].criterion.length == 0)
+			{
+				$scope.showLeaf = false;
+			}
+		}
+
+	}
+
 	var calculeteFinalResult = function()
 	{
 		var mainCriterian = [];
@@ -366,12 +383,22 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 			$scope.mainChartData[0].push(mainCriterian[u].performaceMax);
 			$scope.mainChartData[1].push(mainCriterian[u].performaceMedia);
 			$scope.mainChartData[2].push(mainCriterian[u].performaceMin);
-			$scope.mainLabels.push([mainCriterian[u].name,mainCriterian[u].performaceMax,mainCriterian[u].performaceMedia,mainCriterian[u].performaceMin]);
+			$scope.mainLabels.push([mainCriterian[u].performaceMax,mainCriterian[u].performaceMedia,mainCriterian[u].performaceMin]);
+			
+			calcChart2 = ((mainCriterian[u].performaceMedia+Math.abs(mainCriterian[u].performaceMin))/(Math.abs(mainCriterian[u].performaceMin)+mainCriterian[u].performaceMax +1))*100;
+			$scope.mainChart2Data[0].push(100);
+			$scope.mainChart2Data[1].push(Math.round(calcChart2,4));
+			$scope.labelChart2.push(mainCriterian[u].name);	
 		}
 
 		$scope.mainChartData[0].push($scope.finalResult.performaceMax);
 		$scope.mainChartData[1].push($scope.finalResult.performaceMedia);
 		$scope.mainChartData[2].push($scope.finalResult.performaceMin);
+
+		calcChart2Total = (($scope.finalResult.performaceMedia + Math.abs($scope.finalResult.performaceMin))/(Math.abs($scope.finalResult.performaceMin) + $scope.finalResult.performaceMax + 1))*100;
+		$scope.mainChart2Data[0].push(100);
+		$scope.mainChart2Data[1].push(Math.round(calcChart2,4));
+		$scope.labelChart2.push("Total");	
 
 		$scope.mainLabels.push(['Total',$scope.finalResult.performaceMax,$scope.finalResult.performaceMedia,$scope.finalResult.performaceMin])
 
@@ -379,28 +406,32 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 	}
 	var buildChart = function()
 	{
-		for(var i in $scope.listOfLevels)
+		for(var i in $scope.mainCriterian)
 		{
-			for(var u in $scope.listOfLevels[i].criterion)
+			$scope.mainCriterian[i].data = [[],[],[]];
+			$scope.mainCriterian[i].labels = [];
+			$scope.mainCriterian[i].series = [];
+			  
+			for(var u in $scope.mainCriterian[i].criteria)
 			{
-				$scope.listOfLevels[i].data[0].push($scope.listOfLevels[i].criterion[u].level.performaceMax);
-				$scope.listOfLevels[i].data[1].push($scope.listOfLevels[i].criterion[u].level.performaceMedia);
-				$scope.listOfLevels[i].data[2].push($scope.listOfLevels[i].criterion[u].level.performaceMin);
-				$scope.listOfLevels[i].labels.push([$scope.listOfLevels[i].criterion[u].level.performaceMax,$scope.listOfLevels[i].criterion[u].level.performaceMedia,$scope.listOfLevels[i].criterion[u].level.performaceMin]);
-				$scope.listOfLevels[i].series.push($scope.listOfLevels[i].criterion[u].name);
+				$scope.mainCriterian[i].data[0].push($scope.mainCriterian[i].criteria[u].performaceMax);
+				$scope.mainCriterian[i].data[1].push($scope.mainCriterian[i].criteria[u].performaceMedia);
+				$scope.mainCriterian[i].data[2].push($scope.mainCriterian[i].criteria[u].performaceMin);
+				$scope.mainCriterian[i].labels.push([$scope.mainCriterian[i].criteria[u].performaceMax,$scope.mainCriterian[i].criteria[u].performaceMedia,$scope.mainCriterian[i].criteria[u].performaceMin]);
+				//$scope.mainCriterian[i].series.push($scope.mainCriterian[i].criteria[u].name);
 			}
-			$scope.listOfLevels[i].data[0].push($scope.listOfLevels[i].level.performaceMax);
-			$scope.listOfLevels[i].data[1].push($scope.listOfLevels[i].level.performaceMedia);
-			$scope.listOfLevels[i].data[2].push($scope.listOfLevels[i].level.performaceMin);
-			$scope.listOfLevels[i].labels.push([$scope.listOfLevels[i].level.performaceMax,$scope.listOfLevels[i].level.performaceMedia,$scope.listOfLevels[i].level.performaceMin])
-			$scope.listOfLevels[i].series.push("Total");
+			$scope.mainCriterian[i].data[0].push($scope.mainCriterian[i].level.performaceMax);
+			$scope.mainCriterian[i].data[1].push($scope.mainCriterian[i].level.performaceMedia);
+			$scope.mainCriterian[i].data[2].push($scope.mainCriterian[i].level.performaceMin);
+			$scope.mainCriterian[i].labels.push(["Total",$scope.mainCriterian[i].level.performaceMax,$scope.mainCriterian[i].level.performaceMedia,$scope.mainCriterian[i].level.performaceMin])
+			//$scope.mainCriterian[i].series.push("Total");
 		}
 	}
 
 	// Charts 1
 	//$scope.labels = [['Metrô',189,65,-89],['Onibus',152,70,-52],['Micro - onibus',128,77,-28],['Total',161,69,-61]];
 
-	$scope.series = ['Metrô', 'Onibus', 'Micro-onibus','Total'];
+	
 	
 	//$scope.data = [[189,152,128,161],[65,70,77,69],[-89,-52,-28,-61]];
 	
@@ -422,12 +453,17 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 		}
 	};
 	// chart 2
-	  $scope.label = ['Onibus', 'Metro', 'Micro-onibus'];
-	  $scope.serie = ['Series A', 'Series B'];
-
-	  $scope.datas = [
-	    [100, 100, 100],
-	    [28, 48, 40]
-	  ]; 
+	  
+  	$scope.serie = ['Series A', 'Series B'];
+	$scope.optionsChart2 = {
+		scales: {
+		    yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+        	}]
+		}
+	};
+	 
 
 }]);

@@ -156,11 +156,11 @@ $scope.data = [];
     {
       if( i == $scope.data[position_data].scales.length -1)
       {
-        $scope.data[position_data].scales[i].value = 100 + ($scope.data[position_data].project.steps)*($scope.data.length - position_data); 
+        $scope.data[position_data].scales[i].value = Math.round(100 + ($scope.data[position_data].project.steps)*($scope.data.length - position_data)); 
         
       }else
       {
-        $scope.data[position_data].scales[i].value = 100 + ((($scope.data[position_data].project.steps)*($scope.data.length - position_data))/position_scale);
+        $scope.data[position_data].scales[i].value = Math.round(100 + ((($scope.data[position_data].project.steps)*($scope.data.length - position_data))/position_scale));
       }
       
       i--
@@ -302,7 +302,8 @@ $scope.data = [];
 
     loadingCenter("pageContent",true);
     $http.post('/criterions/find_scale_result_by_criterion',$scope.listCriterionIds).then(function (response) {
-         $scope.listScaleResult = response.data; 
+         $scope.listScaleResult = response.data;
+         $scope.fillDataWithResult(); 
     }, function (response) {
     }).finally(function(){
       loadingCenter("pageContent",false);
@@ -310,9 +311,13 @@ $scope.data = [];
    
   }
 
-  $timeout(function(){
-    $scope.fillDataWithResult();
-  },2000);
+  // $timeout(function(){
+  //   if($scope.loadPage == false)
+  //   {
+  //     appAlert("Error ", " Please reload the page");
+  //   }
+
+  // },20000);
 
 
 }]);
