@@ -14,6 +14,7 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 	$scope.mainCriterian = [];
 	$scope.mainChart2Data = [[],[]];
 	$scope.labelChart2 = [];
+	$scope.serie = [];
 
 	$scope.find = function(id){
 	    loadingCenter("pageContent",true);
@@ -383,12 +384,13 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 			$scope.mainChartData[0].push(mainCriterian[u].performaceMax);
 			$scope.mainChartData[1].push(mainCriterian[u].performaceMedia);
 			$scope.mainChartData[2].push(mainCriterian[u].performaceMin);
-			$scope.mainLabels.push([mainCriterian[u].performaceMax,mainCriterian[u].performaceMedia,mainCriterian[u].performaceMin]);
+			$scope.mainLabels.push([mainCriterian[u].name.substring(0,18),mainCriterian[u].performaceMax,mainCriterian[u].performaceMedia,mainCriterian[u].performaceMin]);
 			
 			calcChart2 = ((mainCriterian[u].performaceMedia+Math.abs(mainCriterian[u].performaceMin))/(Math.abs(mainCriterian[u].performaceMin)+mainCriterian[u].performaceMax +1))*100;
 			$scope.mainChart2Data[0].push(100);
 			$scope.mainChart2Data[1].push(Math.round(calcChart2,4));
-			$scope.labelChart2.push(mainCriterian[u].name);	
+			$scope.labelChart2.push(mainCriterian[u].name.substring(0,18));
+			$scope.serie.push('Total', $scope.project.objeto_pesquisa);	
 		}
 
 		$scope.mainChartData[0].push($scope.finalResult.performaceMax);
@@ -417,14 +419,14 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 				$scope.mainCriterian[i].data[0].push($scope.mainCriterian[i].criteria[u].performaceMax);
 				$scope.mainCriterian[i].data[1].push($scope.mainCriterian[i].criteria[u].performaceMedia);
 				$scope.mainCriterian[i].data[2].push($scope.mainCriterian[i].criteria[u].performaceMin);
-				$scope.mainCriterian[i].labels.push([$scope.mainCriterian[i].criteria[u].performaceMax,$scope.mainCriterian[i].criteria[u].performaceMedia,$scope.mainCriterian[i].criteria[u].performaceMin]);
-				//$scope.mainCriterian[i].series.push($scope.mainCriterian[i].criteria[u].name);
+				$scope.mainCriterian[i].labels.push([$scope.mainCriterian[i].criteria[u].name.substring(0,18),$scope.mainCriterian[i].criteria[u].performaceMax,$scope.mainCriterian[i].criteria[u].performaceMedia,$scope.mainCriterian[i].criteria[u].performaceMin]);
+				//$scope.mainCriterian[i].series.push($scope.mainCriterian[i].criteria[u].titleGroup);
 			}
 			$scope.mainCriterian[i].data[0].push($scope.mainCriterian[i].level.performaceMax);
 			$scope.mainCriterian[i].data[1].push($scope.mainCriterian[i].level.performaceMedia);
 			$scope.mainCriterian[i].data[2].push($scope.mainCriterian[i].level.performaceMin);
 			$scope.mainCriterian[i].labels.push(["Total",$scope.mainCriterian[i].level.performaceMax,$scope.mainCriterian[i].level.performaceMedia,$scope.mainCriterian[i].level.performaceMin])
-			//$scope.mainCriterian[i].series.push("Total");
+			//$scope.mainCriterian[i].series.push($scope.mainCriterian[i].level.titleGroup);
 		}
 	}
 
@@ -453,8 +455,6 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 		}
 	};
 	// chart 2
-	  
-  	$scope.serie = ['Series A', 'Series B'];
 	$scope.optionsChart2 = {
 		scales: {
 		    yAxes: [{
