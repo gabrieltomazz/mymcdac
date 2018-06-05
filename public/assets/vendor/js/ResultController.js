@@ -389,7 +389,7 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 			calcChart2 = ((mainCriterian[u].performaceMedia+Math.abs(mainCriterian[u].performaceMin))/(Math.abs(mainCriterian[u].performaceMin)+mainCriterian[u].performaceMax +1))*100;
 			$scope.mainChart2Data[0].push(100);
 			$scope.mainChart2Data[1].push(Math.round(calcChart2,4));
-			$scope.labelChart2.push(mainCriterian[u].titleGroup);
+			$scope.labelChart2.push(mainCriterian[u].title);
 			$scope.serie.push('Total', $scope.project.objeto_pesquisa);	
 		}
 
