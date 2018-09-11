@@ -153,22 +153,42 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 		}
 		for(var u in list_sequences){
 			for(var v in criterions ){
-			  var one = String(criterions[v].sequence).charAt(0);
-			  if(list_sequences[u].sequence == one){
-			    list_sequences[u].sequences.push(criterions[v].sequence);
+				if(criterions[v].sequence == 10 || (criterions[v].sequence >100 && criterions[v].sequence < 1000))
+				{
+					var one = String(criterions[v].sequence);
+					if(list_sequences[u].sequence == 10 )
+					{
+						list_sequences[u].sequences.push(criterions[v].sequence);
+					}
+				}else{
+				    var one = String(criterions[v].sequence).charAt(0); 
+				}
+				 
+				if(list_sequences[u].sequence == one && list_sequences[u].sequence != 10){
+					list_sequences[u].sequences.push(criterions[v].sequence);
 
-			  }
+				}
 			}
 		}
 		for(var u in list_sequences){
-		    for(var v in criterions ){
-		      var one = String(criterions[v].sequence).charAt(0);
-		      if(list_sequences[u].sequence == one & criterions[v].criterion_id != null ){
-		        checkLevelCriterion($scope.listOfLevels[u],criterions[v]);
-		      }
-		      
-		    }
-		}
+			for(var v in criterions ){
+				if(criterions[v].sequence == 10 || (criterions[v].sequence >100 && criterions[v].sequence < 1000))
+				{
+				    var one = String(criterions[v].sequence);
+				    if(list_sequences[u].sequence == 10 & criterions[v].criterion_id != null)
+				    {
+				      checkLevelCriterion($scope.listOfLevels[u],criterions[v]);
+				    }
+
+				}else{
+			    	var one = String(criterions[v].sequence).charAt(0);
+			  	}
+				if(list_sequences[u].sequence == one && list_sequences[u].sequence != 10 && criterions[v].criterion_id != null ){
+					checkLevelCriterion($scope.listOfLevels[u],criterions[v]);
+				//$scope.listOfLevels[u].criterion.push(criterions[v]);
+				}
+			}
+		}		
 		removeMainCriterian();
 		buildChart();
 		$scope.loadingData = true; 
