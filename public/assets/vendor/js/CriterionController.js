@@ -1,12 +1,12 @@
 app.controller("CriterionController", ['$scope','$http','$window','$timeout', function ($scope, $http,$window,$timeout) {
 
-	$scope.instances = [];
-	$scope.project;
+  $scope.instances = [];
+  $scope.project;
   $scope.listOfLevels = [];
   $scope.effortNumber;
   $scope.contribution;
 
-	$scope.find = function(id){
+  $scope.find = function(id){
     
     loadingCenter("pageContent",true);
     $scope.findProject(id);
@@ -33,7 +33,7 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
   };
   
   var buildLevels = function(criterions){
-     var list_sequences = [];
+      var list_sequences = [];
       for(var i in criterions){
         if(criterions[i].criterion_id == null ){
           list_sequences.push({
@@ -49,18 +49,8 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
       }
       for(var u in list_sequences){
         for(var v in criterions ){
-          if(criterions[v].sequence == 10 || (criterions[v].sequence >100 && criterions[v].sequence < 1000))
-          {
-        var one = String(criterions[v].sequence);
-        if(list_sequences[u].sequence == 10 )
-        {
-          list_sequences[u].sequences.push(criterions[v].sequence);
-        }
-          }else{
-            var one = String(criterions[v].sequence).charAt(0); 
-          }
-         
-          if(list_sequences[u].sequence == one && list_sequences[u].sequence != 10){
+          var one = String(criterions[v].sequence).charAt(0);
+          if(list_sequences[u].sequence == one){
             list_sequences[u].sequences.push(criterions[v].sequence);
 
           }
@@ -68,25 +58,16 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
       }
       for(var u in list_sequences){
         for(var v in criterions ){
-          if(criterions[v].sequence == 10 || (criterions[v].sequence >100 && criterions[v].sequence < 1000))
-          {
-            var one = String(criterions[v].sequence);
-            if(list_sequences[u].sequence == 10 & criterions[v].criterion_id != null)
-            {
-              checkLevelCriterion($scope.listOfLevels[u],criterions[v]);
-            }
-
-          }else{
-            var one = String(criterions[v].sequence).charAt(0);
-          }
-          
-          if(list_sequences[u].sequence == one && list_sequences[u].sequence != 10 && criterions[v].criterion_id != null ){
+          var one = String(criterions[v].sequence).charAt(0);
+          if(list_sequences[u].sequence == one & criterions[v].criterion_id != null ){
             checkLevelCriterion($scope.listOfLevels[u],criterions[v]);
             //$scope.listOfLevels[u].criterion.push(criterions[v]);
           }
           
         }
       }
+  
+
   };
 
   var checkLevelCriterion = function(listCriterions,criterian){
@@ -206,14 +187,14 @@ app.controller("CriterionController", ['$scope','$http','$window','$timeout', fu
 
 
 
-	// // Charts 1
-	// $scope.labels = ["1.1", "1.2", "1.3"];
-	// $scope.series = ['Series A', 'Series B', 'Series C'];
-	// $scope.data = [
-	// 	[170, 100, -66],
-	// 	[100, 120, -20],
-	// 	[-66, -20, -22]
-	// ];
+  // // Charts 1
+  // $scope.labels = ["1.1", "1.2", "1.3"];
+  // $scope.series = ['Series A', 'Series B', 'Series C'];
+  // $scope.data = [
+  //  [170, 100, -66],
+  //  [100, 120, -20],
+  //  [-66, -20, -22]
+  // ];
  //  $scope.onClick = function (points, evt) {
  //    console.log(points, evt);
  //  };
