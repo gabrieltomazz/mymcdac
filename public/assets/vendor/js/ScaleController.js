@@ -283,7 +283,7 @@ $scope.data = [];
     {
       for(var u in $scope.listScaleResult[x])
       {
-        if($scope.listScaleResult[x][u].criterion_id == $scope.data[x].id)
+        if($scope.listScaleResult[x][u].criterion_id && $scope.data[x].id && ($scope.listScaleResult[x][u].criterion_id == $scope.data[x].id))
         {
           $scope.data[x].scales[u].id = $scope.listScaleResult[x][u].id;
           $scope.data[x].scales[u].median = $scope.listScaleResult[x][u].median;
