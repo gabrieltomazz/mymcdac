@@ -279,19 +279,25 @@ $scope.data = [];
 
   $scope.fillDataWithResult = function()
   {
+    var sizeList = 0 ; 
     for(var x in $scope.data)
     {
       for(var u in $scope.listScaleResult[x])
       {
+        sizeList = sizeList + 1;
         if($scope.listScaleResult[x][u].criterion_id && $scope.data[x].id && ($scope.listScaleResult[x][u].criterion_id == $scope.data[x].id))
         {
-          $scope.data[x].scales[u].id = $scope.listScaleResult[x][u].id;
-          $scope.data[x].scales[u].median = $scope.listScaleResult[x][u].median;
+          if( $scope.data[x].scales.length >= sizeList ){
+            $scope.data[x].scales[u].id = $scope.listScaleResult[x][u].id;
+            $scope.data[x].scales[u].median = $scope.listScaleResult[x][u].median;
+          }
+          
         }
-      }
     }
+    sizeList = 0;
+  }
     $scope.loadPage = true;
-  };
+};
 
   $scope.getScaleResult = function()
   {

@@ -124,6 +124,39 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 		
 	};
 
+	$scope.fillDataWithResult = function()
+	{
+	  	var sizeList = 0 ; 
+		for(var x in $scope.listScaleResult)
+		{
+		    criterionData = findCriterionToFillResult($scope.listScaleResult[x][0].criterion_id);
+		    $scope.criterionIdsWithResults.push($scope.listScaleResult[x][0].criterion_id);
+		    for(var u in $scope.listScaleResult[x]) 
+		    { 
+		      	sizeList = sizeList + 1;
+		    	if(criterionData.scales.length >= sizeList){
+		        	criterionData.scales[u].id = $scope.listScaleResult[x][u].id;
+		        	criterionData.scales[u].median = $scope.listScaleResult[x][u].median;
+		        	criterionData.scales[u].value = $scope.listScaleResult[x][u].value;
+		      	}
+		      
+			    if(u == 0){
+			    	criterionData.performaceMin = $scope.listScaleResult[x][u].value; 
+			    }
+			    if($scope.listScaleResult[x][u].median == 1)
+			    { 
+			    	criterionData.performaceMedia = $scope.listScaleResult[x][u].value;
+			    }
+			    if($scope.listScaleResult[x].length == parseFloat(u)+1)
+			    {
+			    	criterionData.performaceMax = $scope.listScaleResult[x][u].value
+			    }
+		    } 
+		}
+	  	findDataWithoutResultAndFill($scope.criterionIdsWithResults);
+	    
+	};
+
 	var findCriterionToFillResult = function(criterion_id)
 	{
 		for(var i in $scope.dataTree)
