@@ -134,11 +134,11 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 		    for(var u in $scope.listScaleResult[x]) 
 		    { 
 		      	sizeList = sizeList + 1;
-		    	// if(criterionData.scales.length >= sizeList){
+		    	 if(criterionData.scales.length >= sizeList){
 		        	criterionData.scales[u].id = $scope.listScaleResult[x][u].id;
 		        	criterionData.scales[u].median = $scope.listScaleResult[x][u].median;
 		        	criterionData.scales[u].value = $scope.listScaleResult[x][u].value;
-		      	// }
+		      	 }
 		      
 			    if(u == 0){
 			    	criterionData.performaceMin = $scope.listScaleResult[x][u].value; 
@@ -152,6 +152,7 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 			    	criterionData.performaceMax = $scope.listScaleResult[x][u].value
 			    }
 		    } 
+		    sizeList = 0 ;
 		}
 	  	findDataWithoutResultAndFill($scope.criterionIdsWithResults);
 	    
