@@ -418,12 +418,12 @@ app.controller("ResultController", ['$scope','$http','$window','$timeout', funct
 			$scope.mainChartData[0].push(mainCriterian[u].performaceMax);
 			$scope.mainChartData[1].push(mainCriterian[u].performaceMedia);
 			$scope.mainChartData[2].push(mainCriterian[u].performaceMin);
-			$scope.mainLabels.push([mainCriterian[u].title,mainCriterian[u].performaceMax,mainCriterian[u].performaceMedia,mainCriterian[u].performaceMin]);
+			$scope.mainLabels.push([mainCriterian[u].name.substring(0,8),mainCriterian[u].performaceMax,mainCriterian[u].performaceMedia,mainCriterian[u].performaceMin]);
 			
 			calcChart2 = ((mainCriterian[u].performaceMedia+Math.abs(mainCriterian[u].performaceMin))/(Math.abs(mainCriterian[u].performaceMin)+mainCriterian[u].performaceMax +1))*100;
 			$scope.mainChart2Data[0].push(100);
 			$scope.mainChart2Data[1].push(Math.round(calcChart2,4));
-			$scope.labelChart2.push(mainCriterian[u].title);
+			$scope.labelChart2.push(mainCriterian[u].name.substring(0,18));
 			$scope.serie.push('Total', $scope.project.objeto_pesquisa);	
 		}
 
