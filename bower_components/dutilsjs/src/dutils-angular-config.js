@@ -70,7 +70,7 @@ app.config(['$httpProvider', function($httpProvider){
 					var uid = response.config.uid;
 
 					var aux=0;
-					for (var field in response.data){
+					for (var field in response.data.errors){
 
 						var fieldId = uid ? field + "-" + uid : field;
 
@@ -79,11 +79,11 @@ app.config(['$httpProvider', function($httpProvider){
 							aux++;
 						}
 
-						addFormError(fieldId,response.data[field]);
+						addFormError(fieldId,response.data.errors[field]);
 					}
 
-					if (response.data.error){
-						appAlert(response.data.error);
+					if (response.data.default){
+						appAlert(response.data.default);
 					}
 
 				}

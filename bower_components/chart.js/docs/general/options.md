@@ -2,7 +2,7 @@
 
 ## Scriptable Options
 
-Scriptable options also accept a function which is called for each data and that takes the unique argument `context` representing contextual information (see [option context](options.md#option-context)).
+Scriptable options also accept a function which is called for each of the underlying data values and that takes the unique argument `context` representing contextual information (see [option context](options.md#option-context)).
 
 Example:
 
@@ -16,7 +16,6 @@ color: function(context) {
 }
 ```
 
-> **Note:** scriptable options are only supported by a few bubble chart options.
 
 ## Indexable Options
 
@@ -44,5 +43,6 @@ The context object contains the following properties:
 - `dataIndex`: index of the current data
 - `dataset`: dataset at index `datasetIndex`
 - `datasetIndex`: index of the current dataset
+- `hover`: true if hovered
 
 **Important**: since the context can represent different types of entities (dataset, data, etc.), some properties may be `undefined` so be sure to test any context property before using it.

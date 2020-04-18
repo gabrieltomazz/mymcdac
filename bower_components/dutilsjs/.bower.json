@@ -24,12 +24,12 @@
     "angular": "latest",
     "toastr": "latest"
   },
-  "version": "1.0.4",
-  "_release": "1.0.4",
+  "version": "2.0.1",
+  "_release": "2.0.1",
   "_resolution": {
     "type": "version",
-    "tag": "1.0.4",
-    "commit": "989928f3cd09d6dd3a5f01399c4e509acb5b8df9"
+    "tag": "2.0.1",
+    "commit": "fb8dc0111160ab152d747a9f220fed43dde0469d"
   },
   "_source": "https://github.com/danielcmm/DUtilsJS.git",
   "_target": "*",

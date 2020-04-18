@@ -1,4 +1,3 @@
-// Test the bubble chart default config
 describe('Default Configs', function() {
 	describe('Bubble Chart', function() {
 		it('should return correct tooltip strings', function() {
@@ -103,7 +102,7 @@ describe('Default Configs', function() {
 				options: config
 			});
 
-			var expectedLegend = '<ul class="' + chart.id + '-legend"><li><span style="background-color:red"></span>label1</li><li><span style="background-color:green"></span>label2</li></ul>';
+			var expectedLegend = '<ul class="' + chart.id + '-legend"><li><span style="background-color: red;"></span>label1</li><li><span style="background-color: green;"></span>label2</li></ul>';
 			expect(chart.generateLegend()).toBe(expectedLegend);
 		});
 
@@ -219,7 +218,7 @@ describe('Default Configs', function() {
 				options: config
 			});
 
-			var expectedLegend = '<ul class="' + chart.id + '-legend"><li><span style="background-color:red"></span>label1</li><li><span style="background-color:green"></span>label2</li></ul>';
+			var expectedLegend = '<ul class="' + chart.id + '-legend"><li><span style="background-color: red;"></span>label1</li><li><span style="background-color: green;"></span>label2</li></ul>';
 			expect(chart.generateLegend()).toBe(expectedLegend);
 		});
 
