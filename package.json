@@ -14,7 +14,7 @@
     "devDependencies": {
         "axios": "^0.16.2",
         "bootstrap-sass": "^3.4.1",
-        "bower": "1.8.2",
+        "bower": "1.8.8",
         "cross-env": "^5.2.1",
         "jquery": "^3.5.0",
         "laravel-mix": "^1.0",
